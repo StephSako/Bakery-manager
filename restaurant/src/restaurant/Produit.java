@@ -1,6 +1,7 @@
 package restaurant;
 
 public class Produit {
+	
 	public String nom;
 	public double prix;
 	public int stock;

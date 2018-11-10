@@ -6,12 +6,19 @@ public class NoteClient {
 	
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public int idClient;
+	public double prixTotalHT;
+	public double prixTotalTTC;
+	public double TVATotale;
+	public static double TauxTVA = 0.1;
 	
 	public NoteClient(int idClient) {
 		this.idClient = idClient;
+		this.prixTotalTTC = 0.0;
+		this.prixTotalHT = 0.0;
+		this.TVATotale = 0.0;
 	}
 	
-	public void ajouterProduitNoteClient(Scanner sc, StockRestaurant SR){
+	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR){
 		String nom = "";
 		double prix = 0;
 		int stock;
@@ -32,58 +39,48 @@ public class NoteClient {
 		
 		System.out.println("Nombre de " + nom + " à ajouter au panier : ");
 		while ((stock = sc.nextInt()) <= 0){
-			System.out.println("Stock incorrect !\n");
+			System.out.println("Montant saisie incorrect !\n");
 		}
 		
 		// On ajoute le produit saisie au panier du client
 		this.panier.add(new Produit(nom, prix, stock));
+	}
+	
+	public void afficherNoteAPayer() {
+		// Calcul du prix total HT
+		for (Produit produit : panier) {
+			this.prixTotalHT = this.prixTotalHT + produit.prix;
+		}
 		
-		// On retire le produit au stok du restaurant
-		int j = 0;
+		// Calcul du prix total TTC
+		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
+		
+		// Calcul de la TVA totale encaissée
+		this.TVATotale = this.prixTotalHT * TauxTVA;
+		
+		// On affiche la note à payer
+		System.out.println("Voici la note à payer : \n");
+		for (Produit produit : panier) {
+			System.out.println("Produit ; '" + produit.nom + "'\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
+			+ prixTotalHT + " €\nTVA totale: " + TVATotale + " €\nPrix TTC : " + prixTotalTTC + "€");
+		}
+	}
+	
+	public void cloturerNoteClient(Restaurant restaurant) {
+		// On retire le produit au stock du restaurant
+		/*int j = 0;
 		while(j < SR.stock.size()){
 			if (SR.stock.get(j).nom == nom) {
 				SR.stock.get(j).stock -= stock;
 				break;
 			}
 			j++;
-		}
-	}
-	
-	public void afficherNoteAPayer() {
-		// Calcul du prix total HT
-		double prixTotalHT = 0;
-		for (Produit produit : panier) {
-			prixTotalHT = prixTotalHT + produit.prix;
-		}
+		}*/
 		
-		// Calcul du prix total HT
-		double prixTotalTTC = prixTotalHT + prixTotalHT * 0.1;
+		// On supprime la note dans la liste des notes actives de la caisse	
 		
-		double TVA = prixTotalHT*0.2;
-		
-		System.out.println("Voici la note à payer : \n");
-		for (Produit produit : panier) {
-			System.out.println("Produit ; '" + produit.nom + "'\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
-			+ prixTotalHT + " €\nTVA : " + TVA + " €\nPrix TTC : " + prixTotalTTC + "€");
-		}
-	}
-	
-	public void menuNoteClient(String lettre, Scanner sc, StockRestaurant SR) {
-		System.out.println("Ajout d'un produit au panier du client. 'N' pour revenir au menu.");
-		while (!(lettre = sc.next()).equals("N")){
-			
-			switch (lettre){
-				
-				// On affiche la liste des opérations disponibles
-				case "h": 	System.out.println("a: Ajouter un produit à la note du client\n'N': Revenir au menu principal\nl: Afficher la note du client\n"); break;
-						
-				case "a": ajouterProduitNoteClient(sc, SR); break;
-							
-				case "p": afficherNoteAPayer(); break;
-						
-				default: 	System.out.println("Unknow command. Type h for help"); break;
-			}
-		}		
-		
+		// On ajoute le montant total et la TVA encaissée dans les champs du restaurant
+		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
+		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
 	}
 }
