@@ -18,35 +18,49 @@ public class NoteClient {
 		this.TVATotale = 0.0;
 	}
 	
-	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR){
+	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger){
 		String nom = "";
 		double prix = 0;
 		int stock;
 		
-		System.out.println("Saisir un nom : ");
-		while ((nom = sc.next()).equals("")){
-			System.out.println("Nom incorrect !\n");
-		}
+		int j = 0;
+		boolean existe = false;
+		logger.print("Saisir le produit à ajouter : ");
+		// On vérifie que le produit existe bien dans le stock
+		/* !!!!*/
 		
-		int i = 0;
-		while(i < SR.stock.size()){
-			if (SR.stock.get(i).nom == nom) {
-				prix = SR.stock.get(i).prix;
-				break;
+		do {
+			j = 0;
+			nom = sc.next();
+			
+			while(j < SR.stock.size()) {
+				logger.print(SR.stock.get(j).nom);
+				if (SR.stock.get(j).nom.equals(nom)) {
+					prix = SR.stock.get(j).prix;
+					existe = true;
+					break;
+				}
+				j++;
 			}
-			i++;
-		}
+			if (!existe) logger.print("Ce produit n'existe pas ...\n Retapez le produit :");
+			else logger.print("Ce produit est correct !\n");
+			
+		} while (nom.equals("") || !existe);
 		
-		System.out.println("Nombre de " + nom + " à ajouter au panier : ");
+		logger.print("Nombre de " + nom + " à ajouter au panier : ");
 		while ((stock = sc.nextInt()) <= 0){
-			System.out.println("Montant saisie incorrect !\n");
+			logger.print("Montant saisie incorrect !\n");
 		}
 		
 		// On ajoute le produit saisie au panier du client
 		this.panier.add(new Produit(nom, prix, stock));
+		
+		logger.print("\nMerci ! La commande a bien été enregistrée.\n");
 	}
 	
-	public void afficherNoteAPayer() {
+	public String afficherNoteAPayer() {
+		String noteToPrint = "";
+		
 		// Calcul du prix total HT
 		for (Produit produit : panier) {
 			this.prixTotalHT = this.prixTotalHT + produit.prix;
@@ -59,11 +73,13 @@ public class NoteClient {
 		this.TVATotale = this.prixTotalHT * TauxTVA;
 		
 		// On affiche la note à payer
-		System.out.println("Voici la note à payer : \n");
+		noteToPrint += "\nVoici la note à payer : \n";
 		for (Produit produit : panier) {
-			System.out.println("Produit ; '" + produit.nom + "'\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
-			+ prixTotalHT + " €\nTVA totale: " + TVATotale + " €\nPrix TTC : " + prixTotalTTC + "€");
+			noteToPrint += "Produit ; '" + produit.nom + "'\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
+			+ prixTotalHT + " €\nTVA totale: " + TVATotale + " €\nPrix TTC : " + prixTotalTTC + "€\n";
 		}
+		
+		return noteToPrint;
 	}
 	
 	public void cloturerNoteClient(Restaurant restaurant) {

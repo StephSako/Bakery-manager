@@ -52,18 +52,20 @@ public class Restaurant {
 		this.stock.add(new Produit(nom, prix, stock));
 	}
 	
-	public void afficherStock() {
+	public String afficherStock() {
+		String stockToPrint = "";
 		for (Produit produit : stock) {
-			System.out.println("'" + produit.nom + "' - " + produit.prix + "€ - " + produit.stock + " en stock");
+			stockToPrint += "'" + produit.nom + "' - " + produit.prix + "€ - " + produit.stock + " en stock\n";
 		}
+		return stockToPrint;
 	}
 	
-	public NoteClient ouvrirNote(Scanner sc) {
+	public NoteClient ouvrirNote(Scanner sc, ConsoleLogger logger) {
 		
 		int idClientSearched;
-		System.out.println("Saisissez l'identifiant du client : ");
+		logger.print("Saisissez l'identifiant du client : ");
 		while ((idClientSearched = sc.nextInt()) < 0){
-			System.out.println("Identifiant client incorrect !\n");
+			logger.print("Identifiant client incorrect !\n");
 		}
 		
 		int i = 0;
@@ -76,11 +78,14 @@ public class Restaurant {
 		return null;
 	}
 	
-	public void afficherNotes() {
+	public String afficherNotes() {
+		String notesToPrint = "";
 		for (NoteClient notes : this.notesClientsActives) {
-			System.out.println("ID Client : " + notes.idClient);
-			notes.afficherNoteAPayer();
-			System.out.println("\n");
+			notesToPrint += "ID Client : " + notes.idClient;
+			notesToPrint += notes.afficherNoteAPayer();
 		}
+		
+		if (notesToPrint == "") return "Il n'y a aucune note.";
+		return notesToPrint;
 	}
 }
