@@ -2,7 +2,7 @@ package restaurant;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class NoteClient {
+public class NoteClient implements NoteClientI{
 	
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public int idClient;
@@ -19,22 +19,17 @@ public class NoteClient {
 	}
 	
 	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger){
-		String nom = "";
-		double prix = 0;
-		int stock;
+		String nom = ""; double prix = 0; int stock;
 		
-		int j = 0;
-		boolean existe = false;
-		logger.print("Saisir le produit à ajouter : ");
+		int j = 0; boolean existe = false;
+		logger.print("Saisir le produit à ajouter parmi : ");
+		for (Produit produit : SR.stock) logger.print(produit.nom);
+		
 		// On vérifie que le produit existe bien dans le stock
-		/* !!!!*/
-		
 		do {
-			j = 0;
-			nom = sc.next();
+			j = 0; nom = sc.next();
 			
 			while(j < SR.stock.size()) {
-				logger.print(SR.stock.get(j).nom);
 				if (SR.stock.get(j).nom.equals(nom)) {
 					prix = SR.stock.get(j).prix;
 					existe = true;
@@ -42,9 +37,7 @@ public class NoteClient {
 				}
 				j++;
 			}
-			if (!existe) logger.print("Ce produit n'existe pas ...\n Retapez le produit :");
-			else logger.print("Ce produit est correct !\n");
-			
+			if (!existe) logger.print("Ce produit n'existe pas ...\n Retapez le produit :");			
 		} while (nom.equals("") || !existe);
 		
 		logger.print("Nombre de " + nom + " à ajouter au panier : ");
@@ -52,9 +45,16 @@ public class NoteClient {
 			logger.print("Montant saisie incorrect !\n");
 		}
 		
-		// On ajoute le produit saisie au panier du client
-		this.panier.add(new Produit(nom, prix, stock));
-		
+		// On ajoute le produit au panier du client s'il n'en a pas déjà commandé, sinon on additionne son stock dans le panier
+		int m = 0; boolean alreadyCommanded = false;
+		while(m < panier.size()) {
+			if (panier.get(m).nom.equals(nom)) {
+				panier.get(m).stock += stock;
+				alreadyCommanded = true;
+				break;
+			} m++;
+		}
+		if (!alreadyCommanded) this.panier.add(new Produit(nom, prix, stock));
 		logger.print("\nMerci ! La commande a bien été enregistrée.\n");
 	}
 	
@@ -62,23 +62,18 @@ public class NoteClient {
 		String noteToPrint = "";
 		
 		// Calcul du prix total HT
-		for (Produit produit : panier) {
-			this.prixTotalHT = this.prixTotalHT + produit.prix;
-		}
-		
+		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
 		// Calcul du prix total TTC
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
-		
 		// Calcul de la TVA totale encaissée
 		this.TVATotale = this.prixTotalHT * TauxTVA;
 		
 		// On affiche la note à payer
 		noteToPrint += "\nVoici la note à payer : \n";
 		for (Produit produit : panier) {
-			noteToPrint += "Produit ; '" + produit.nom + "'\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
+			noteToPrint += "Produit ; '" + produit.nom + "' - " + produit.stock + " unités\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
 			+ prixTotalHT + " €\nTVA totale: " + TVATotale + " €\nPrix TTC : " + prixTotalTTC + "€\n";
 		}
-		
 		return noteToPrint;
 	}
 	
