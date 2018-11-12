@@ -3,7 +3,7 @@ Pareil pour DOUBLE et STRING																	PAS FAIT
 
 Enlever du stock du restaurant lors d'une commande												FAIT
 
-Verifier que quand le stock est e rupture de stock, il faut supprimer le produit dans le stock 	FAIT
+Verifier que lorsque le stock est en rupture de stock, il faut supprimer le produit dans le stock FAIT
 
-ile stock n'est pas suffisant, commander les dernieres ressources disponibles au lieu de
+Si le stock n'est pas suffisant, commander les dernieres ressources disponibles au lieu de
 commander 10 unités si 9 ne sont que disponibles (donc, n'en commander que 9) 					FAIT
