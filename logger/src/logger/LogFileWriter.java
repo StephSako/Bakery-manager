@@ -1,4 +1,4 @@
-package restaurant;
+package logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,5 +19,10 @@ public class LogFileWriter {
 		catch(IOException ioe){
 			System.err.println(ioe.getMessage());
 		}
+	}
+	
+	public static Logger getLogger(String name) {
+		
+		return new ConsoleLogger();
 	}
 }

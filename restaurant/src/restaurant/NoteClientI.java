@@ -1,5 +1,6 @@
 package restaurant;
 import java.util.Scanner;
+import logger.*;
 
 public interface NoteClientI {
 		

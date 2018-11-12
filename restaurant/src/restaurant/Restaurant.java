@@ -1,6 +1,7 @@
 package restaurant;
 import java.util.LinkedList;
 import java.util.Scanner;
+import logger.*;
 
 public class Restaurant {
 	
@@ -44,7 +45,7 @@ public class Restaurant {
 			System.out.println("Prix incorrect !\n");
 		}
 		
-		System.out.println("Saisir un montant Ã  ajouter dans le stock : ");
+		System.out.println("Saisir un montant à  ajouter dans le stock : ");
 		while ((stock = sc.nextInt()) <= 0){
 			System.out.println("Stock incorrect !\n");
 		}
@@ -55,7 +56,7 @@ public class Restaurant {
 	public String afficherStock() {
 		String stockToPrint = "";
 		for (Produit produit : stock) {
-			stockToPrint += "'" + produit.nom + "' - " + produit.prix + "â‚¬ - " + produit.stock + " en stock\n";
+			stockToPrint += "'" + produit.nom + "' - " + produit.prix + "€ - " + produit.stock + " en stock\n";
 		}
 		return stockToPrint;
 	}
@@ -63,9 +64,9 @@ public class Restaurant {
 	public NoteClient ouvrirNote(Scanner sc, ConsoleLogger logger) {
 		
 		int idClientSearched;
-		logger.print("Saisissez l'identifiant du client : ");
+		logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
 		while ((idClientSearched = sc.nextInt()) < 0){
-			logger.print("Identifiant client incorrect !\n");
+			logger.error("OUTPUT", "Identifiant client incorrect !\n");
 		}
 		
 		int i = 0;

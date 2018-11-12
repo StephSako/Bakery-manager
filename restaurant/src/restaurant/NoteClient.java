@@ -1,6 +1,7 @@
 package restaurant;
 import java.util.LinkedList;
 import java.util.Scanner;
+import logger.*;
 
 public class NoteClient implements NoteClientI{
 	
@@ -22,10 +23,10 @@ public class NoteClient implements NoteClientI{
 		String nom = ""; double prix = 0; int stock;
 		
 		int j = 0; boolean existe = false;
-		logger.print("Saisir le produit Ã  ajouter parmi : ");
-		for (Produit produit : SR.stock) logger.print(produit.nom);
+		logger.info("OUTPUT", "Saisir le produit à  ajouter parmi : ");
+		for (Produit produit : SR.stock) logger.info("OUTPUT", produit.nom);
 		
-		// On vÃ©rifie que le produit existe bien dans le stock
+		// On vérifie que le produit existe bien dans le stock
 		do {
 			j = 0; nom = sc.next();
 			
@@ -37,15 +38,15 @@ public class NoteClient implements NoteClientI{
 				}
 				j++;
 			}
-			if (!existe) logger.print("Ce produit n'existe pas ...\n Retapez le produit :");			
+			if (!existe) logger.error("OUTPUT", "Ce produit n'existe pas ...\n Retapez le produit :");			
 		} while (nom.equals("") || !existe);
 		
-		logger.print("Nombre de " + nom + " Ã  ajouter au panier : ");
+		logger.info("OUTPUT", "Nombre de " + nom + " à  ajouter au panier : ");
 		while ((stock = sc.nextInt()) <= 0){
-			logger.print("Montant saisie incorrect !\n");
+			logger.error("OUTPUT", "Montant saisie incorrect !\n");
 		}
 		
-		// On ajoute le produit au panier du client s'il n'en a pas dÃ©jÃ  commandÃ©, sinon on additionne son stock dans le panier
+		// On ajoute le produit au panier du client s'il n'en a pas déjà  commandé, sinon on additionne son stock dans le panier
 		int m = 0; boolean alreadyCommanded = false;
 		while(m < panier.size()) {
 			if (panier.get(m).nom.equals(nom)) {
@@ -55,7 +56,7 @@ public class NoteClient implements NoteClientI{
 			} m++;
 		}
 		if (!alreadyCommanded) this.panier.add(new Produit(nom, prix, stock));
-		logger.print("\nMerci ! La commande a bien Ã©tÃ© enregistrÃ©e.\n");
+		logger.info("OUTPUT", "\nMerci ! La commande a bien été enregistrée.\n");
 	}
 	
 	public String afficherNoteAPayer() {
@@ -65,14 +66,14 @@ public class NoteClient implements NoteClientI{
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
 		// Calcul du prix total TTC
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
-		// Calcul de la TVA totale encaissÃ©e
+		// Calcul de la TVA totale encaissée
 		this.TVATotale = this.prixTotalHT * TauxTVA;
 		
-		// On affiche la note Ã  payer
-		noteToPrint += "\nVoici la note Ã  payer : \n";
+		// On affiche la note à  payer
+		noteToPrint += "\nVoici la note à  payer : \n";
 		for (Produit produit : panier) {
-			noteToPrint += "Produit ; '" + produit.nom + "' - " + produit.stock + " unitÃ©s\nPrix unitaire HT : " + produit.prix + "â‚¬\nPrix total HT : "
-			+ prixTotalHT + " â‚¬\nTVA totale: " + TVATotale + " â‚¬\nPrix TTC : " + prixTotalTTC + "â‚¬\n";
+			noteToPrint += "Produit ; '" + produit.nom + "' - " + produit.stock + " unités\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
+			+ prixTotalHT + " €\nTVA totale: " + TVATotale + " €\nPrix TTC : " + prixTotalTTC + "€\n";
 		}
 		return noteToPrint;
 	}
@@ -90,7 +91,7 @@ public class NoteClient implements NoteClientI{
 		
 		// On supprime la note dans la liste des notes actives de la caisse	
 		
-		// On ajoute le montant total et la TVA encaissÃ©e dans les champs du restaurant
+		// On ajoute le montant total et la TVA encaissée dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
 	}
