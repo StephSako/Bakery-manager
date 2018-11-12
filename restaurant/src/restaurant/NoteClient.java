@@ -1,4 +1,5 @@
 package restaurant;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
@@ -11,6 +12,7 @@ public class NoteClient implements NoteClientI{
 	public double prixTotalTTC;
 	public double TVATotale;
 	public static double TauxTVA = 0.1;
+	DecimalFormat df = new DecimalFormat("0.00");
 	
 	public NoteClient(int idClient) {
 		this.idClient = idClient;
@@ -72,9 +74,9 @@ public class NoteClient implements NoteClientI{
 		// On affiche la note à  payer
 		noteToPrint += "\nVoici la note à  payer : \n";
 		for (Produit produit : panier) {
-			noteToPrint += "Produit ; '" + produit.nom + "' - " + produit.stock + " unités\nPrix unitaire HT : " + produit.prix + "€\nPrix total HT : "
-			+ prixTotalHT + " €\nTVA totale: " + TVATotale + " €\nPrix TTC : " + prixTotalTTC + "€\n";
+			noteToPrint += "Produit ; '" + produit.nom + "' - " + produit.stock + " unités\nPrix unitaire HT : " + df.format(produit.prix) + "€\n-------------------------------\n";
 		}
+		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " €\nTVA totale : " + df.format(TVATotale) + " €\nPrix TTC : " + df.format(prixTotalTTC) + "€\n";
 		return noteToPrint;
 	}
 	

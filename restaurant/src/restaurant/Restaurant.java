@@ -1,4 +1,5 @@
 package restaurant;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
@@ -15,6 +16,8 @@ public class Restaurant {
 	public String nom;
 	public double rentreeArgent;
 	public double totalTVAfacturee;
+	
+	DecimalFormat df = new DecimalFormat("0.00");
 	
 	public void ajouterRentreeArgent(double rentreeArgent) {
 		this.rentreeArgent += rentreeArgent;
@@ -56,7 +59,7 @@ public class Restaurant {
 	public String afficherStock() {
 		String stockToPrint = "";
 		for (Produit produit : stock) {
-			stockToPrint += "'" + produit.nom + "' - " + produit.prix + "€ - " + produit.stock + " en stock\n";
+			stockToPrint += "'" + produit.nom + "' - " + df.format((produit.prix * 1.1)) + "€ TTC - " + produit.stock + " en stock\n";
 		}
 		return stockToPrint;
 	}

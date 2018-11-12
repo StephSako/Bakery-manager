@@ -21,21 +21,24 @@ public class Caisse {
 		LogFileWriter lfw = new LogFileWriter();
 		lfw.ecrireFinLogFile("OUTPUT", "INFO", "Initialisation ...");
 		
-		logger.info("OUTPUT", "Bienvenue sur l'interface de la caisse du restaurant Bagel !\nQue voulez-vous faire ? ('help' pour afficher l'aide)\n");
+		logger.info("OUTPUT", "Bienvenue sur l'interface de la caisse du restaurant Bagel !\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n");
 		
 		while (!(lettre = sc.next()).equals("q")) {		
 			switch (lettre) {					
 				
-				// On affiche la liste des opÃ©rations disponibles
-				case "help": logger.info("OUTPUT", "'help': Afficher cette fenêtre d'aide.\n'add_stock' = Ajouter un produit au stock du restaurant" +
-				"\n'add_note' = Ajouter un produit dans une note de client\n'create_note' = Créer une note d'un client\n'all_stock': Afficher le stock de Bagel\n" + 
-				"'pay_note' = Clôturer et faire payer la note d'un client\n'print_note' = Afficher la note d'un client\n'all_notes': Afficher toutes les notes actives\n'q': Quitter le programme"); break;
+				// On affiche la liste des opérations disponibles
+				case "h": logger.info("OUTPUT", "'h': Afficher cette fenêtre d'aide.\n'a': Afficher le stock de Bagel\n'b' : Ajouter un produit au stock du restaurant" +
+				"\n'c' : Créer une note d'un client\n'd' : Ajouter un produit dans une note de client\n'e' : Afficher la note d'un client\n" + 
+				"'f' : Clôturer et faire payer la note d'un client\n'g': Afficher toutes les notes actives\n'q': Quitter le programme"); break;
+				
+				// On affiche le stock du restaurant
+				case "a": 	logger.info("OUTPUT", stockRestaurant.afficherStock()); break;
 				
 				// On ajoute un produit dans le stock du restaurant
-				case "add_stock": 	stockRestaurant.ajouterProduitStockRestaurant(sc); break;
+				case "b": 	stockRestaurant.ajouterProduitStockRestaurant(sc); break;
 				
 				// On crée une note de client
-				case "create_note":					
+				case "c":					
 							int idClient;
 							logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
 							while ((idClient = sc.nextInt()) < 0){
@@ -47,7 +50,7 @@ public class Caisse {
 							logger.info("OUTPUT", "Le client '" + idClient + "' a bien été créé."); break;
 				
 				// Ajouter un produit dans la note d'un client
-				case "add_note": 	// On recherche la note du client si elle existe grâce à  son ID ce qui permet d'ouvrir plusieurs notes simultanément				
+				case "d": 	// On recherche la note du client si elle existe grâce à  son ID ce qui permet d'ouvrir plusieurs notes simultanément				
 							NoteClient noteRecovered = stockRestaurant.ouvrirNote(sc, logger);
 							if (noteRecovered == null) {
 								logger.error("OUTPUT", "Aucune note n'a été créée avec cet identifiant"); break;
@@ -57,14 +60,14 @@ public class Caisse {
 							noteRecovered.ajouterProduitNoteClient(sc, stockRestaurant, logger); break;
 							
 				// On affiche la note du client
-				case "print_note": 	NoteClient noteToPrint = stockRestaurant.ouvrirNote(sc, logger);
+				case "e": 	NoteClient noteToPrint = stockRestaurant.ouvrirNote(sc, logger);
 							if (noteToPrint == null) break;
 							
 							// On affiche la note du client
 							logger.info("OUTPUT", noteToPrint.afficherNoteAPayer()); break;
 				
 				// On cloture et fais payer la note au client
-				case "pay_note": 
+				case "f": 
 					logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
 					NoteClient noteToFence = stockRestaurant.ouvrirNote(sc, logger);
 					if (noteToFence == null) break;
@@ -72,11 +75,8 @@ public class Caisse {
 					// On affiche la note du client
 					noteToFence.cloturerNoteClient(stockRestaurant); break;
 				
-				// On affiche le stock du restaurant
-				case "all_stock": 	logger.info("OUTPUT", stockRestaurant.afficherStock()); break;
-				
 				// On affiche toutes les notes actives
-				case "all_notes": 	logger.info("OUTPUT", stockRestaurant.afficherNotes()); break;
+				case "g": 	logger.info("OUTPUT", stockRestaurant.afficherNotes()); break;
 						
 				default: logger.error("OUTPUT", "Commande inconnue. Tappez 'help' pour l'aide"); break;
 			}
