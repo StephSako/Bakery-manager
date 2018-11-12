@@ -10,19 +10,15 @@ public class Saisie {
 	}
 	
 	public int getSaisieInt(Scanner sc, ConsoleLogger logger, String question) {
-		int maValeur = 0;
-		boolean test = false;
-		
-		do {
-		logger.info("OUTPUT", question);
-		test = true;
-		try {
-			maValeur = sc.nextInt();
-		} catch(InputMismatchException ex) {
-			logger.error("OUTPUT", "Saisissez un nombre entier");
-			test = false;
+		int val = 0;		
+		while(val <= 0) {
+			try {				
+				logger.info("INPUT", "Saisissez un nombre strictement positif : ");
+				val = sc.nextInt();
+			} catch (InputMismatchException ex) {
+				sc.next();
+			}
 		}
-		} while(!test);
-		return maValeur;
+		return val;
 	}
 }

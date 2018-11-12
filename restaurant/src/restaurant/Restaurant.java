@@ -48,7 +48,7 @@ public class Restaurant {
 			System.out.println("Prix incorrect !\n");
 		}
 		
-		System.out.println("Saisir un montant à  ajouter dans le stock : ");
+		System.out.println("Saisir un montant a ajouter dans le stock : ");
 		while ((stock = sc.nextInt()) <= 0){
 			System.out.println("Stock incorrect !\n");
 		}
@@ -59,7 +59,7 @@ public class Restaurant {
 	public String afficherStock() {
 		String stockToPrint = "";
 		for (Produit produit : stock) {
-			stockToPrint += "'" + produit.nom + "' - " + df.format((produit.prix * 1.1)) + "€ TTC - " + produit.stock + " en stock\n";
+			stockToPrint += "'" + produit.nom + "' - " + df.format((produit.prix * 1.1)) + " euros TTC - " + produit.stock + " en stock\n";
 		}
 		return stockToPrint;
 	}
@@ -95,7 +95,7 @@ public class Restaurant {
 	
 	public String donneesComptable() {
 		String donnees = "";
-		donnees += "Total des rentrées d'argent : "+rentreeArgent+"\nTotal de la TVA facturée : "+totalTVAfacturee; 
+		donnees += "Total des rentrees d'argent : "+rentreeArgent+"\nTotal de la TVA facturee : "+totalTVAfacturee; 
 		return donnees;
 	}
 }
