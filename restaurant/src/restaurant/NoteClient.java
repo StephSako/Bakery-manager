@@ -95,11 +95,21 @@ public class NoteClient implements NoteClientI{
 		return noteToPrint;
 	}
 	
-	public void cloturerNoteClient(Restaurant restaurant) {
-		// On supprime la note dans la liste des notes actives de la caisse	
+	public void cloturerNoteClient(Restaurant restaurant, ConsoleLogger logger) {
 		
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
+				
+		// On supprime la note dans la liste des notes actives de la caisse
+		int h = 0;
+		while(h < restaurant.notesClientsActives.size()) {
+			if (restaurant.notesClientsActives.get(h).idClient == this.idClient) {
+				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
+				break;
+			} h++;
+		}
+		
+		logger.info("PROGRAM", "Merci ! La note a bien ete encaissee.");
 	}
 }

@@ -33,24 +33,24 @@ public class Restaurant {
 		this.rentreeArgent = 0.0;
 	}
 	
-	public void ajouterProduitStockRestaurant(Scanner sc){
+	public void ajouterProduitStockRestaurant(Scanner sc, ConsoleLogger logger){
 		String nom;
 		double prix;
 		int stock;
 		
-		System.out.println("Saisir un nom : ");
+		logger.info("INPUT", "Saisir un nom : ");
 		while ((nom = sc.next()).equals("")){
-			System.out.println("Nom incorrect !\n");
+			logger.info("OUTPUT", "Nom incorrect !\n");
 		}
 		
-		System.out.println("Saisir un prix : ");
+		logger.info("INPUT", "Saisir un prix : ");
 		while ((prix = sc.nextDouble()) <= 0){
-			System.out.println("Prix incorrect !\n");
+			logger.info("OUTPUT", "Prix incorrect !\n");
 		}
 		
 		System.out.println("Saisir un montant a ajouter dans le stock : ");
 		while ((stock = sc.nextInt()) <= 0){
-			System.out.println("Stock incorrect !\n");
+			logger.info("OUTPUT", "Stock incorrect !\n");
 		}
 		
 		this.stock.add(new Produit(nom, prix, stock));
@@ -89,7 +89,7 @@ public class Restaurant {
 			notesToPrint += notes.afficherNoteAPayer()+"\n";
 		}
 		
-		if (notesToPrint == "") return "Il n'y a aucune note.";
+		if (notesToPrint == "") return "Il n'y a aucune note en cours.";
 		return notesToPrint;
 	}
 	

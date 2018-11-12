@@ -35,7 +35,7 @@ public class Caisse {
 				case "a": 	logger.info("OUTPUT", stockRestaurant.afficherStock()); break;
 				
 				// On ajoute un produit dans le stock du restaurant
-				case "b": 	stockRestaurant.ajouterProduitStockRestaurant(sc); break;
+				case "b": 	stockRestaurant.ajouterProduitStockRestaurant(sc, logger); break;
 				
 				// On cree une note de client
 				case "c":					
@@ -72,7 +72,7 @@ public class Caisse {
 					if (noteToFence == null) break;
 					
 					// On affiche la note du client
-					noteToFence.cloturerNoteClient(stockRestaurant); break;
+					noteToFence.cloturerNoteClient(stockRestaurant, logger); break;
 				
 				// On affiche toutes les notes actives
 				case "g": logger.info("OUTPUT", stockRestaurant.afficherNotes()); break;
