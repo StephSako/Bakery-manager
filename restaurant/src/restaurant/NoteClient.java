@@ -13,6 +13,7 @@ public class NoteClient implements NoteClientI{
 	public double TVATotale;
 	public static double TauxTVA = 0.1;
 	DecimalFormat df = new DecimalFormat("0.00");
+	Saisie saisie = new Saisie();
 	
 	public NoteClient(int idClient) {
 		this.idClient = idClient;
@@ -21,8 +22,8 @@ public class NoteClient implements NoteClientI{
 		this.TVATotale = 0.0;
 	}
 	
-	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger){
-		String nom = ""; double prix = 0; int stock;
+	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger) {
+		String nom = ""; double prix = 0; int stock = 0;
 		
 		int j = 0; boolean existe = false;
 		logger.info("OUTPUT", "Saisir le produit à  ajouter parmi : ");
@@ -31,7 +32,7 @@ public class NoteClient implements NoteClientI{
 		// On vérifie que le produit existe bien dans le stock
 		do {
 			j = 0; nom = sc.next();
-			
+			nom = nom.trim();
 			while(j < SR.stock.size()) {
 				if (SR.stock.get(j).nom.equals(nom)) {
 					prix = SR.stock.get(j).prix;
@@ -43,10 +44,7 @@ public class NoteClient implements NoteClientI{
 			if (!existe) logger.error("OUTPUT", "Ce produit n'existe pas ...\n Retapez le produit :");			
 		} while (nom.equals("") || !existe);
 		
-		logger.info("OUTPUT", "Nombre de " + nom + " à  ajouter au panier : ");
-		while ((stock = sc.nextInt()) <= 0){
-			logger.error("OUTPUT", "Montant saisie incorrect !\n");
-		}
+		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + nom + " à  ajouter au panier : ");
 		
 		// On ajoute le produit au panier du client s'il n'en a pas déjà  commandé, sinon on additionne son stock dans le panier
 		int m = 0; boolean alreadyCommanded = false;
@@ -74,7 +72,7 @@ public class NoteClient implements NoteClientI{
 		// On affiche la note à  payer
 		noteToPrint += "\nVoici la note à  payer : \n";
 		for (Produit produit : panier) {
-			noteToPrint += "Produit ; '" + produit.nom + "' - " + produit.stock + " unités\nPrix unitaire HT : " + df.format(produit.prix) + "€\n-------------------------------\n";
+			noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unités\nPrix unitaire HT : " + df.format(produit.prix) + "€\n-------------------------------\n";
 		}
 		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " €\nTVA totale : " + df.format(TVATotale) + " €\nPrix TTC : " + df.format(prixTotalTTC) + "€\n";
 		return noteToPrint;
@@ -82,7 +80,8 @@ public class NoteClient implements NoteClientI{
 	
 	public void cloturerNoteClient(Restaurant restaurant) {
 		// On retire le produit au stock du restaurant
-		/*int j = 0;
+		/*logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
+		int j = 0;
 		while(j < SR.stock.size()){
 			if (SR.stock.get(j).nom == nom) {
 				SR.stock.get(j).stock -= stock;

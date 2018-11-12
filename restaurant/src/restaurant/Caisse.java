@@ -8,7 +8,7 @@ public class Caisse {
 		
 		Scanner sc = new Scanner(System.in); String lettre;
 		
-		// CrÃ©ation du restaurant
+		// Création du restaurant
 		Restaurant stockRestaurant = new Restaurant("StudioBagel");
 		stockRestaurant.stock.add(new Produit("Bagel", 2.5, 20));
 		stockRestaurant.stock.add(new Produit("Burger", 5.75, 10));
@@ -29,7 +29,7 @@ public class Caisse {
 				// On affiche la liste des opérations disponibles
 				case "h": logger.info("OUTPUT", "'h': Afficher cette fenêtre d'aide.\n'a': Afficher le stock de Bagel\n'b' : Ajouter un produit au stock du restaurant" +
 				"\n'c' : Créer une note d'un client\n'd' : Ajouter un produit dans une note de client\n'e' : Afficher la note d'un client\n" + 
-				"'f' : Clôturer et faire payer la note d'un client\n'g': Afficher toutes les notes actives\n'q': Quitter le programme"); break;
+				"'f' : Clôturer et faire payer la note d'un client\n'g': Afficher toutes les notes actives\n'i': Afficher les données comptables\n'q': Quitter le programme"); break;
 				
 				// On affiche le stock du restaurant
 				case "a": 	logger.info("OUTPUT", stockRestaurant.afficherStock()); break;
@@ -68,7 +68,6 @@ public class Caisse {
 				
 				// On cloture et fais payer la note au client
 				case "f": 
-					logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
 					NoteClient noteToFence = stockRestaurant.ouvrirNote(sc, logger);
 					if (noteToFence == null) break;
 					
@@ -76,7 +75,9 @@ public class Caisse {
 					noteToFence.cloturerNoteClient(stockRestaurant); break;
 				
 				// On affiche toutes les notes actives
-				case "g": 	logger.info("OUTPUT", stockRestaurant.afficherNotes()); break;
+				case "g": logger.info("OUTPUT", stockRestaurant.afficherNotes()); break;
+				
+				case "i": logger.info("OUTPUT", stockRestaurant.donneesComptable()); break;
 						
 				default: logger.error("OUTPUT", "Commande inconnue. Tappez 'help' pour l'aide"); break;
 			}

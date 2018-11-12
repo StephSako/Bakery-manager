@@ -86,10 +86,16 @@ public class Restaurant {
 		String notesToPrint = "";
 		for (NoteClient notes : this.notesClientsActives) {
 			notesToPrint += "ID Client : " + notes.idClient;
-			notesToPrint += notes.afficherNoteAPayer();
+			notesToPrint += notes.afficherNoteAPayer()+"\n";
 		}
 		
 		if (notesToPrint == "") return "Il n'y a aucune note.";
 		return notesToPrint;
+	}
+	
+	public String donneesComptable() {
+		String donnees = "";
+		donnees += "Total des rentrées d'argent : "+rentreeArgent+"\nTotal de la TVA facturée : "+totalTVAfacturee; 
+		return donnees;
 	}
 }
