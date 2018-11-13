@@ -7,7 +7,7 @@ import logger.*;
 public class NoteClient implements NoteClientI{
 	
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
-	public int idClient;
+	public String nomClient;
 	public double prixTotalHT;
 	public double prixTotalTTC;
 	public double TVATotale;
@@ -15,8 +15,8 @@ public class NoteClient implements NoteClientI{
 	DecimalFormat df = new DecimalFormat("0.00");
 	public static Saisie saisie = new Saisie();
 	
-	public NoteClient(int idClient) {
-		this.idClient = idClient;
+	public NoteClient(String nomClient) {
+		this.nomClient = nomClient;
 		this.prixTotalTTC = 0.0;
 		this.prixTotalHT = 0.0;
 		this.TVATotale = 0.0;
@@ -104,7 +104,7 @@ public class NoteClient implements NoteClientI{
 		// On supprime la note dans la liste des notes actives de la caisse
 		int h = 0;
 		while(h < restaurant.notesClientsActives.size()) {
-			if (restaurant.notesClientsActives.get(h).idClient == this.idClient) {
+			if (restaurant.notesClientsActives.get(h).nomClient == this.nomClient) {
 				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
 				break;
 			} h++;
