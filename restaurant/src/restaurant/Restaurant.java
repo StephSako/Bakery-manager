@@ -10,7 +10,7 @@ public class Restaurant {
 	// Liste des produits en stock
 	public LinkedList<Produit> stock = new LinkedList<Produit>();
 	
-	// Liste des notes de clients actives/ouvertes/crées
+	// Liste des notes de clients actives/ouvertes/creees
 	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>();
 	
 	// Champs de la classe Restaurant
@@ -62,16 +62,11 @@ public class Restaurant {
 	
 	public NoteClient ouvrirNote(Scanner sc, ConsoleLogger logger) {
 		
-<<<<<<< HEAD
-		int idClientSearched;
-		idClientSearched = saisie.getSaisieInt(sc, logger, "Saisissez l'identifiant du client : ");
-=======
 		String nomClientSearched;
-		logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
-		while ((nomClientSearched = sc.next()).equals("")){
-			logger.error("OUTPUT", "Identifiant client incorrect !\n");
-		}
->>>>>>> 60036b561e04a2c74c0526ab3df0520cf746c13d
+		logger.info("OUTPUT", "Saisissez le nom du client : ");
+		
+		nomClientSearched = sc.next();
+		nomClientSearched = nomClientSearched.trim();
 		
 		int i = 0;
 		while(i < this.notesClientsActives.size()){
