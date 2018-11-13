@@ -35,7 +35,7 @@ public class NoteClient implements NoteClientI{
 		
 		int j = 0; boolean existe = false;
 		logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
-		for (Produit produit : SR.stock) logger.info("OUTPUT", produit.nom + " - " + produit.stock + " unités");
+		for (Produit produit : SR.stock) logger.info("OUTPUT", produit.nom + " - " + produit.stock + " unites");
 		
 		// On verifie que le produit existe bien dans le stock
 		do {
