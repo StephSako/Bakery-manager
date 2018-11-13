@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
 
+
 public class Restaurant {
 	
 	// Liste des produits en stock
@@ -18,6 +19,7 @@ public class Restaurant {
 	public double totalTVAfacturee;
 	
 	DecimalFormat df = new DecimalFormat("0.00");
+	Saisie saisie = new Saisie();
 	
 	public void ajouterRentreeArgent(double rentreeArgent) {
 		this.rentreeArgent += rentreeArgent;
@@ -42,16 +44,10 @@ public class Restaurant {
 		while ((nom = sc.next()).equals("")){
 			logger.info("OUTPUT", "Nom incorrect !\n");
 		}
-		
-		logger.info("INPUT", "Saisir un prix : ");
-		while ((prix = sc.nextDouble()) <= 0){
-			logger.info("OUTPUT", "Prix incorrect !\n");
-		}
-		
-		System.out.println("Saisir un montant a ajouter dans le stock : ");
-		while ((stock = sc.nextInt()) <= 0){
-			logger.info("OUTPUT", "Stock incorrect !\n");
-		}
+	
+		prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ");
+	
+		stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ");
 		
 		this.stock.add(new Produit(nom, prix, stock));
 	}
@@ -67,10 +63,7 @@ public class Restaurant {
 	public NoteClient ouvrirNote(Scanner sc, ConsoleLogger logger) {
 		
 		int idClientSearched;
-		logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
-		while ((idClientSearched = sc.nextInt()) < 0){
-			logger.error("OUTPUT", "Identifiant client incorrect !\n");
-		}
+		idClientSearched = saisie.getSaisieInt(sc, logger, "Saisissez l'identifiant du client : ");
 		
 		int i = 0;
 		while(i < this.notesClientsActives.size()){

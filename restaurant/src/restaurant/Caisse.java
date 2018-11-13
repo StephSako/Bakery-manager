@@ -20,6 +20,7 @@ public class Caisse {
 		// Création du LogFileWriter
 		LogFileWriter lfw = new LogFileWriter();
 		lfw.ecrireFinLogFile("OUTPUT", "INFO", "Initialisation ...");
+		Saisie saisie = new Saisie();
 		
 		logger.info("OUTPUT", "Bienvenue sur l'interface de la caisse du restaurant Bagel !\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n");
 		
@@ -40,10 +41,7 @@ public class Caisse {
 				// On cree une note de client
 				case "c":					
 							int idClient;
-							logger.info("OUTPUT", "Saisissez l'identifiant du client a creer : ");
-							while ((idClient = sc.nextInt()) < 0){
-								logger.error("OUTPUT", "Identifiant client incorrect !\n");
-							}
+							idClient = saisie.getSaisieInt(sc, logger, "Saisissez l'identifiant du client a creer : ");
 							
 							// On ajoute la nouvelle note dans la liste des notes de clients encore actives
 							stockRestaurant.notesClientsActives.add(new NoteClient(idClient));
