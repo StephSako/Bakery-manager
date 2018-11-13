@@ -6,8 +6,12 @@ import logger.*;
 
 public class Saisie {
 	
-	public Saisie() {
-	}
+	// CONSTRUCTEUR
+	
+	public Saisie() {}
+	
+	
+	// FONCTIONS
 	
 	public int getSaisieInt(Scanner sc, ConsoleLogger logger, String question) {
 		int val = 0;		

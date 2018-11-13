@@ -7,6 +7,8 @@ import logger.*;
 
 public class Restaurant {
 	
+	// CHAMPS
+	
 	// Liste des produits en stock
 	public LinkedList<Produit> stock = new LinkedList<Produit>();
 	
@@ -21,18 +23,24 @@ public class Restaurant {
 	DecimalFormat df = new DecimalFormat("0.00");
 	Saisie saisie = new Saisie();
 	
+	
+	// CONSTRUCTEUR
+	
+	public Restaurant(String nom) {
+		this.nom = nom;
+		this.totalTVAfacturee = 0.0;
+		this.rentreeArgent = 0.0;
+	}
+	
+	
+	// FONCTIONS
+	
 	public void ajouterRentreeArgent(double rentreeArgent) {
 		this.rentreeArgent += rentreeArgent;
 	}
 	
 	public void ajoutertotalTVAfacturee(double totalTVAfacturee) {
 		this.totalTVAfacturee += totalTVAfacturee;
-	}
-	
-	public Restaurant(String nom) {
-		this.nom = nom;
-		this.totalTVAfacturee = 0.0;
-		this.rentreeArgent = 0.0;
 	}
 	
 	public void ajouterProduitStockRestaurant(Scanner sc, ConsoleLogger logger){

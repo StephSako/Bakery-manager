@@ -1,6 +1,8 @@
 package logger;
 
 public class ConsoleLogger implements Logger{
+	
+	// FONCTIONS
 
 	public void info(String category, String message) {
 		System.out.println(message);		

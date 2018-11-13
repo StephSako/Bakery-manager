@@ -5,6 +5,8 @@ import java.util.Scanner;
 import logger.*;
 
 public class NoteClient implements NoteClientI{
+
+	// CHAMPS
 	
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public String nomClient;
@@ -15,12 +17,18 @@ public class NoteClient implements NoteClientI{
 	DecimalFormat df = new DecimalFormat("0.00");
 	public static Saisie saisie = new Saisie();
 	
+	
+	// CONSTRUCTEUR
+	
 	public NoteClient(String nomClient) {
 		this.nomClient = nomClient;
 		this.prixTotalTTC = 0.0;
 		this.prixTotalHT = 0.0;
 		this.TVATotale = 0.0;
 	}
+	
+	
+	// FONCTIONS
 	
 	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger) {
 		String nom = ""; double prix = 0; int stock = 0;
