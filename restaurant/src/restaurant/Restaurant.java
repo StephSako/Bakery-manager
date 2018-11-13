@@ -48,13 +48,9 @@ public class Restaurant {
 		double prix;
 		int stock;
 		
-		logger.info("INPUT", "Saisir un nom : ");
-		while ((nom = sc.next()).equals("")){
-			logger.info("OUTPUT", "Nom incorrect !\n");
-		}
-	
+		nom = sc.next();
+		nom = nom.trim();
 		prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ");
-	
 		stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ");
 		
 		this.stock.add(new Produit(nom, prix, stock));

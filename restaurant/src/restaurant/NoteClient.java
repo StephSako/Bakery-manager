@@ -28,7 +28,7 @@ public class NoteClient implements NoteClientI{
 	}
 	
 	
-	// FONCTIONS
+	// METHODES
 	
 	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger) {
 		String nom = ""; double prix = 0; int stock = 0;
@@ -49,7 +49,7 @@ public class NoteClient implements NoteClientI{
 				}
 				j++;
 			}
-			if (!existe) logger.error("OUTPUT", "Ce produit n'existe pas ...\n Retapez le produit :");			
+			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\n Retapez le produit :");			
 		} while (nom.equals("") || !existe);
 		
 		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + nom + " a ajouter au panier : ");
@@ -81,7 +81,7 @@ public class NoteClient implements NoteClientI{
 		}
 		
 		if (!alreadyCommanded) this.panier.add(newProduit);
-		logger.info("OUTPUT", "\nMerci ! La commande a bien ete enregistree.\n");
+		logger.info("PROGRAM", "\nMerci ! La commande a bien ete enregistree.\n");
 	}
 	
 	public String afficherNoteAPayer() {

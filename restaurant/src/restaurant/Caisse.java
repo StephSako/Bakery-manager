@@ -17,9 +17,9 @@ public class Caisse {
 		stockRestaurant.stock.add(new Produit("Smoothie", 1.25, 30));
 		stockRestaurant.stock.add(new Produit("Cafe", 0.85, 999)); // 999 = illimité
 		
-		// Création du logger
+		// Creation du logger
 		ConsoleLogger logger = new ConsoleLogger();		
-		// Création du LogFileWriter
+		// Creation du LogFileWriter
 		LogFileWriter lfw = new LogFileWriter();
 		lfw.ecrireFinLogFile("OUTPUT", "INFO", "Initialisation ...");
 		//Saisie saisie = new Saisie();
@@ -30,12 +30,12 @@ public class Caisse {
 			switch (lettre) {					
 				
 				// On affiche la liste des operations disponibles
-				case "h": logger.info("OUTPUT", "'h' : Afficher cette fenetre d'aide.\n'a' : Afficher le stock de Bagel\n'b' : Ajouter un produit au stock du restaurant" +
+				case "h": logger.info("PROGRAM", "'h' : Afficher cette fenetre d'aide.\n'a' : Afficher le stock de Bagel\n'b' : Ajouter un produit au stock du restaurant" +
 				"\n'c' : Creer une note d'un client\n'd' : Ajouter un produit dans une note de client\n'e' : Afficher la note d'un client\n" + 
 				"'f' : Cloturer et faire payer la note d'un client\n'g' : Afficher toutes les notes actives\n'i' : Afficher les donnees comptables\n'q' : Quitter le programme"); break;
 				
 				// On affiche le stock du restaurant
-				case "a": 	logger.info("OUTPUT", stockRestaurant.afficherStock()); break;
+				case "a": 	logger.info("PROGRAM", stockRestaurant.afficherStock()); break;
 				
 				// On ajoute un produit dans le stock du restaurant
 				case "b": 	stockRestaurant.ajouterProduitStockRestaurant(sc, logger); break;
@@ -49,13 +49,13 @@ public class Caisse {
 							
 							// On ajoute la nouvelle note dans la liste des notes de clients encore actives
 							stockRestaurant.notesClientsActives.add(new NoteClient(nomClient));
-							logger.info("OUTPUT", "Le client '" + nomClient + "' a bien ete cree."); break;
+							logger.info("PROGRAM", "Le client '" + nomClient + "' a bien ete cree."); break;
 				
 				// Ajouter un produit dans la note d'un client
 				case "d": 	// On recherche la note du client si elle existe grace a son ID ce qui permet d'ouvrir plusieurs notes simultan�ment				
 							NoteClient noteRecovered = stockRestaurant.ouvrirNote(sc, logger);
 							if (noteRecovered == null) {
-								logger.error("OUTPUT", "Aucune note n'a ete creee avec cet identifiant"); break;
+								logger.error("PROGRAM", "Aucune note n'a ete creee avec cet identifiant"); break;
 							}
 							else {												
 								// On saisie le produit a ajouter dans la note du client recuperee
@@ -67,7 +67,7 @@ public class Caisse {
 							if (noteToPrint == null) break;
 							
 							// On affiche la note du client
-							logger.info("OUTPUT", noteToPrint.afficherNoteAPayer()); break;
+							logger.info("PROGRAM", noteToPrint.afficherNoteAPayer()); break;
 				
 				// On cloture et fais payer la note au client
 				case "f": 
@@ -78,14 +78,14 @@ public class Caisse {
 					noteToFence.cloturerNoteClient(stockRestaurant, logger); break;
 				
 				// On affiche toutes les notes actives
-				case "g": logger.info("OUTPUT", stockRestaurant.afficherNotes()); break;
+				case "g": logger.info("PROGRAM", stockRestaurant.afficherNotes()); break;
 				
-				case "i": logger.info("OUTPUT", stockRestaurant.donneesComptable()); break;
+				case "i": logger.info("PROGRAM", stockRestaurant.donneesComptable()); break;
 						
-				default: logger.error("OUTPUT", "Commande inconnue. Tappez 'help' pour l'aide"); break;
+				default: logger.error("PROGRAM", "Commande inconnue. Tappez 'help' pour l'aide"); break;
 			}
 			logger.info("OUTPUT", "\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n");
 		}
-		logger.info("OUTPUT", "Vous quittez la caisse enregistreuse ...");
+		logger.info("PROGRAM", "Vous quittez la caisse enregistreuse ...");
 	}
 }
