@@ -66,15 +66,15 @@ public class Restaurant {
 	
 	public NoteClient ouvrirNote(Scanner sc, ConsoleLogger logger) {
 		
-		int idClientSearched;
+		String nomClientSearched;
 		logger.info("OUTPUT", "Saisissez l'identifiant du client : ");
-		while ((idClientSearched = sc.nextInt()) < 0){
+		while ((nomClientSearched = sc.next()).equals("")){
 			logger.error("OUTPUT", "Identifiant client incorrect !\n");
 		}
 		
 		int i = 0;
 		while(i < this.notesClientsActives.size()){
-			if (this.notesClientsActives.get(i).idClient == idClientSearched) {
+			if (this.notesClientsActives.get(i).nomClient.equals(nomClientSearched)) {
 				return this.notesClientsActives.get(i);
 			}
 			i++;
@@ -85,7 +85,7 @@ public class Restaurant {
 	public String afficherNotes() {
 		String notesToPrint = "";
 		for (NoteClient notes : this.notesClientsActives) {
-			notesToPrint += "ID Client : " + notes.idClient;
+			notesToPrint += "ID Client : " + notes.nomClient;
 			notesToPrint += notes.afficherNoteAPayer()+"\n";
 		}
 		

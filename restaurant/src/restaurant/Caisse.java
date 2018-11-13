@@ -39,15 +39,15 @@ public class Caisse {
 				
 				// On cree une note de client
 				case "c":					
-							int idClient;
+							String nomClient;
 							logger.info("OUTPUT", "Saisissez l'identifiant du client a creer : ");
-							while ((idClient = sc.nextInt()) < 0){
-								logger.error("OUTPUT", "Identifiant client incorrect !\n");
+							while ((nomClient = sc.next()).equals("")){
+								logger.error("OUTPUT", "Identifiant client incorrect : '" + nomClient + "' !\n");
 							}
 							
 							// On ajoute la nouvelle note dans la liste des notes de clients encore actives
-							stockRestaurant.notesClientsActives.add(new NoteClient(idClient));
-							logger.info("OUTPUT", "Le client '" + idClient + "' a bien ete cree."); break;
+							stockRestaurant.notesClientsActives.add(new NoteClient(nomClient));
+							logger.info("OUTPUT", "Le client '" + nomClient + "' a bien ete cree."); break;
 				
 				// Ajouter un produit dans la note d'un client
 				case "d": 	// On recherche la note du client si elle existe grace a son ID ce qui permet d'ouvrir plusieurs notes simultan�ment				
@@ -55,9 +55,10 @@ public class Caisse {
 							if (noteRecovered == null) {
 								logger.error("OUTPUT", "Aucune note n'a ete creee avec cet identifiant"); break;
 							}
-												
-							// On saisie le produit a ajouter dans la note du client recuperee
-							noteRecovered.ajouterProduitNoteClient(sc, stockRestaurant, logger); break;
+							else {												
+								// On saisie le produit a ajouter dans la note du client recuperee
+								noteRecovered.ajouterProduitNoteClient(sc, stockRestaurant, logger); break;
+							}
 							
 				// On affiche la note du client
 				case "e": 	NoteClient noteToPrint = stockRestaurant.ouvrirNote(sc, logger);
