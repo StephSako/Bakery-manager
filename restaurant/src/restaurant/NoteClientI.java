@@ -1,10 +1,8 @@
 package restaurant;
-import java.util.Scanner;
-import logger.*;
 
 public interface NoteClientI {
 		
-	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger);
+	public void ajouterProduitNoteClient(Restaurant restaurant);
 	public String afficherNoteAPayer();
-	public void cloturerNoteClient(Restaurant restaurant, ConsoleLogger logger);
+	public void cloturerNoteClient(Restaurant restaurant);
 }

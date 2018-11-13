@@ -4,10 +4,11 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
 
-
 public class Restaurant {
 	
 	// CHAMPS
+	public Scanner sc = new Scanner(System.in);
+	public ConsoleLogger logger = new ConsoleLogger();
 	
 	// Liste des produits en stock
 	public LinkedList<Produit> stock = new LinkedList<Produit>();
@@ -15,7 +16,6 @@ public class Restaurant {
 	// Liste des notes de clients actives/ouvertes/creees
 	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>();
 	
-	// Champs de la classe Restaurant
 	public String nom;
 	public double rentreeArgent;
 	public double totalTVAfacturee;
@@ -33,25 +33,20 @@ public class Restaurant {
 	}
 	
 	
-	// FONCTIONS
+	// METHODES
 	
-	public void ajouterRentreeArgent(double rentreeArgent) {
-		this.rentreeArgent += rentreeArgent;
-	}
 	
-	public void ajoutertotalTVAfacturee(double totalTVAfacturee) {
-		this.totalTVAfacturee += totalTVAfacturee;
-	}
 	
-	public void ajouterProduitStockRestaurant(Scanner sc, ConsoleLogger logger){
+	public void ajouterProduitStockRestaurant(){
 		String nom;
 		double prix;
 		int stock;
 		
+		logger.info("OUTPUT", "Nom du produit a ajouter :");
 		nom = sc.next();
 		nom = nom.trim();
-		prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ");
-		stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ");
+		prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
+		stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
 		
 		this.stock.add(new Produit(nom, prix, stock));
 	}
@@ -64,7 +59,7 @@ public class Restaurant {
 		return stockToPrint;
 	}
 	
-	public NoteClient ouvrirNote(Scanner sc, ConsoleLogger logger) {
+	public NoteClient ouvrirNote() {
 		
 		String nomClientSearched;
 		logger.info("OUTPUT", "Saisissez le nom du client : ");
@@ -93,9 +88,17 @@ public class Restaurant {
 		return notesToPrint;
 	}
 	
+	public void ajouterRentreeArgent(double rentreeArgent) {
+		this.rentreeArgent += rentreeArgent;
+	}
+	
+	public void ajoutertotalTVAfacturee(double totalTVAfacturee) {
+		this.totalTVAfacturee += totalTVAfacturee;
+	}
+	
 	public String donneesComptable() {
 		String donnees = "";
-		donnees += "Total des rentrees d'argent : "+rentreeArgent+"\nTotal de la TVA facturee : "+totalTVAfacturee; 
+		donnees += "Total des rentrees d'argent : "+df.format(rentreeArgent)+"\nTotal de la TVA facturee : "+df.format(totalTVAfacturee); 
 		return donnees;
 	}
 }

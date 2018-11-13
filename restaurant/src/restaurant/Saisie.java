@@ -13,26 +13,28 @@ public class Saisie {
 	
 	// FONCTIONS
 	
-	public int getSaisieInt(Scanner sc, ConsoleLogger logger, String question) {
+	public int getSaisieInt(Scanner sc, ConsoleLogger logger, String question, String reponse) {
 		int val = 0;		
 		while(val <= 0) {
 			try {
-				logger.info("OUTPUT", "Saisissez un nombre strictement positif : ");
+				logger.info("OUTPUT", question);
 				val = sc.nextInt();
 			} catch (InputMismatchException ex) {
+				logger.error("PROGRAM", reponse);
 				sc.next();
 			}
 		}
 		return val;
 	}
 	
-	public double getSaisieDouble(Scanner sc, ConsoleLogger logger, String question) {
+	public double getSaisieDouble(Scanner sc, ConsoleLogger logger, String question, String reponse) {
 		double val = 0.0;
 		while(val <= 0) {
 			try {
-				logger.info("OUTPUT", "Saisissez un nombre a virgule strictement positif : ");
+				logger.info("OUTPUT", question);
 				val = sc.nextDouble();
 			} catch (InputMismatchException ex) {
+				logger.error("PROGRAM", reponse);
 				sc.next();
 			}
 		}

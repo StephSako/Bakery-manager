@@ -1,15 +1,5 @@
-Saisie a verifier pour INT																		FAIT
 Pareil pour DOUBLE et STRING																	PAS FAIT
-
-Enlever du stock du restaurant lors d'une commande												FAIT
-
-Verifier que lorsque le stock est en rupture de stock, il faut supprimer le produit dans le stock FAIT
-
-Si le stock n'est pas suffisant, commander les dernieres ressources disponibles au lieu de
-commander 10 unites si 9 ne sont que disponibles (donc, n'en commander que 9) 					FAIT
-
-Cloturer une note en Supprimant la note traitée, ajouter aux données financieres du restaurant	FAIT
 
 Verifier qu'un utilisateur n'existe pas deja lors de la creation d'une note						PAS FAIT
 
-Creer une note en fonction d'un nom et non d'un ID												FAIT
+Quand on quitte �a affiche le "default"...

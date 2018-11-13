@@ -16,6 +16,8 @@ public class NoteClient implements NoteClientI{
 	public static double TauxTVA = 0.1;
 	DecimalFormat df = new DecimalFormat("0.00");
 	public static Saisie saisie = new Saisie();
+	public Scanner sc = new Scanner(System.in);
+	public ConsoleLogger logger = new ConsoleLogger();
 	
 	
 	// CONSTRUCTEUR
@@ -30,48 +32,35 @@ public class NoteClient implements NoteClientI{
 	
 	// METHODES
 	
-	public void ajouterProduitNoteClient(Scanner sc, Restaurant SR, ConsoleLogger logger) {
-		String nom = ""; double prix = 0; int stock = 0;
-		
-		int j = 0; boolean existe = false;
-		logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
-		for (Produit produit : SR.stock) logger.info("OUTPUT", produit.nom + " - " + produit.stock + " unites");
-		
-		// On verifie que le produit existe bien dans le stock
+	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
+		int j; boolean existe = false;
 		do {
 			j = 0; nom = sc.next();
 			nom = nom.trim();
-			while(j < SR.stock.size()) {
-				if (SR.stock.get(j).nom.equals(nom)) {
-					prix = SR.stock.get(j).prix;
+			while(j < restaurant.stock.size()) {
+				if (restaurant.stock.get(j).nom.equals(nom)) {
+					prix = restaurant.stock.get(j).prix;
+					nom = restaurant.stock.get(j).nom;
+					stock = restaurant.stock.get(j).stock;
 					existe = true;
 					break;
 				}
 				j++;
 			}
-			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\n Retapez le produit :");			
+			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\nRetapez le produit :");			
 		} while (nom.equals("") || !existe);
-		
-		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + nom + " a ajouter au panier : ");
-		
-		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
-		int m = 0; boolean alreadyCommanded = false;
-		while(m < panier.size()) {
-			if (panier.get(m).nom.equals(nom)) {
-				panier.get(m).stock += stock;
-				alreadyCommanded = true;
-				break;
-			} m++;
-		}
 		Produit newProduit = new Produit(nom, prix, stock);
-		
-		// On retire le produit du stock du restaurant
-		for (Produit produitRestau : SR.stock) {
+		System.out.println(nom+" "+prix+" "+stock); //ca affiche ce qui faut
+		return newProduit;
+	}
+	
+	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
+		for (Produit produitRestau : restaurant.stock) {
 			if (produitRestau.nom == produitRestau.nom) {
 				
 				if (newProduit.stock >= produitRestau.stock) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernières ressources disponibles
-					SR.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
+					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
 				}
 				else if (newProduit.stock < produitRestau.stock) {
 					produitRestau.stock -= newProduit.stock;
@@ -79,12 +68,40 @@ public class NoteClient implements NoteClientI{
 				break;
 			}
 		}
-		
+	}
+	
+	public void produitDejaCommande(Restaurant restaurant, Produit newProduit) {
+		int m = 0; boolean alreadyCommanded = false;
+		while(m < panier.size()) {
+			if (panier.get(m).nom.equals(newProduit.nom)) {
+				panier.get(m).stock += newProduit.stock;
+				alreadyCommanded = true;
+				break;
+			} m++;
+		}
 		if (!alreadyCommanded) this.panier.add(newProduit);
+	}
+	
+	public void ajouterProduitNoteClient(Restaurant restaurant) {
+		String nom = ""; double prix = 0; int stock = 0;
+		logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
+		for (Produit produit : restaurant.stock) logger.info("OUTPUT", produit.nom + " - " + produit.stock + " unites");
+		
+		// On verifie que le produit existe bien dans le stock
+		Produit newProduit = existenceProduitEtAjout(restaurant, nom, prix, stock);
+		System.out.println(newProduit.nom+" "+newProduit.prix+" "+newProduit.stock); //ca affiche la meme chose que dans la fct
+		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
+		
+		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
+		produitDejaCommande(restaurant, newProduit);
+
+		// On retire le produit du stock du restaurant
+		enleverProduitDuStock(restaurant, newProduit); //marche pas
+		
 		logger.info("PROGRAM", "\nMerci ! La commande a bien ete enregistree.\n");
 	}
 	
-	public String afficherNoteAPayer() {
+	public String afficherNoteAPayer() { //ca affiche le mauvais stock
 		String noteToPrint = "";
 		
 		// Calcul du prix total HT
@@ -103,7 +120,7 @@ public class NoteClient implements NoteClientI{
 		return noteToPrint;
 	}
 	
-	public void cloturerNoteClient(Restaurant restaurant, ConsoleLogger logger) {
+	public void cloturerNoteClient(Restaurant restaurant) {
 		
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
