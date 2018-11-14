@@ -41,7 +41,6 @@ public class NoteClient implements NoteClientI{
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;
 					nom = restaurant.stock.get(j).nom;
-					stock = restaurant.stock.get(j).stock;
 					existe = true;
 					break;
 				}
@@ -50,20 +49,21 @@ public class NoteClient implements NoteClientI{
 			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\nRetapez le produit :");			
 		} while (nom.equals("") || !existe);
 		Produit newProduit = new Produit(nom, prix, stock);
-		System.out.println(nom+" "+prix+" "+stock); //ca affiche ce qui faut
 		return newProduit;
 	}
 	
 	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
 		for (Produit produitRestau : restaurant.stock) {
-			if (produitRestau.nom == produitRestau.nom) {
+			if (produitRestau.nom == newProduit.nom) {
 				
 				if (newProduit.stock >= produitRestau.stock) { // Si le client est trop gourmand ...
-					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernières ressources disponibles
+					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
+					logger.info("PROGRAM", "\nIl n'y a pas assez de "+newProduit.nom+".\nVotre commande comportera seulement "+newProduit.stock+" "+newProduit.nom+"(s).\n");
 					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
 				}
 				else if (newProduit.stock < produitRestau.stock) {
-					produitRestau.stock -= newProduit.stock;
+					logger.info("PROGRAM", "\nMerci ! La commande a ete enregistree.\n");
+					if(!(newProduit.nom.equals("Cafe"))) produitRestau.stock -= newProduit.stock;
 				}
 				break;
 			}
@@ -87,18 +87,18 @@ public class NoteClient implements NoteClientI{
 		logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
 		for (Produit produit : restaurant.stock) logger.info("OUTPUT", produit.nom + " - " + produit.stock + " unites");
 		
-		// On verifie que le produit existe bien dans le stock
+		// On verifie que le produit existe bien dans le stock et on cree le produit avec le bon prix et le bon nom
 		Produit newProduit = existenceProduitEtAjout(restaurant, nom, prix, stock);
-		System.out.println(newProduit.nom+" "+newProduit.prix+" "+newProduit.stock); //ca affiche la meme chose que dans la fct
+		
+		//on initialise le stock (nb de produits commandes tapes par l'utilisateur)
 		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
+		newProduit.stock = stock;
 		
 		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
 		produitDejaCommande(restaurant, newProduit);
 
 		// On retire le produit du stock du restaurant
 		enleverProduitDuStock(restaurant, newProduit); //marche pas
-		
-		logger.info("PROGRAM", "\nMerci ! La commande a bien ete enregistree.\n");
 	}
 	
 	public String afficherNoteAPayer() { //ca affiche le mauvais stock
