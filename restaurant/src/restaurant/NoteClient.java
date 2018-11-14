@@ -32,6 +32,7 @@ public class NoteClient implements NoteClientI{
 	
 	// METHODES
 	
+	
 	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
 		int j; boolean existe = false;
 		do {
@@ -42,9 +43,7 @@ public class NoteClient implements NoteClientI{
 					prix = restaurant.stock.get(j).prix;
 					nom = restaurant.stock.get(j).nom;
 					existe = true;
-					break;
-				}
-				j++;
+				} j++;
 			}
 			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\nRetapez le produit :");			
 		} while (nom.equals("") || !existe);
@@ -55,7 +54,6 @@ public class NoteClient implements NoteClientI{
 	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
 		for (Produit produitRestau : restaurant.stock) {
 			if (produitRestau.nom == newProduit.nom) {
-				
 				if (newProduit.stock >= produitRestau.stock) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
 					logger.info("PROGRAM", "\nIl n'y a pas assez de "+newProduit.nom+".\nVotre commande comportera seulement "+newProduit.stock+" "+newProduit.nom+"(s).\n");
@@ -65,7 +63,6 @@ public class NoteClient implements NoteClientI{
 					logger.info("PROGRAM", "\nMerci ! La commande a ete enregistree.\n");
 					if(!(newProduit.nom.equals("Cafe"))) produitRestau.stock -= newProduit.stock;
 				}
-				break;
 			}
 		}
 	}

@@ -36,6 +36,26 @@ public class Restaurant {
 	// METHODES
 	
 	
+	public void existenceClientEtAjout() {
+		String newClient; int j; boolean existe = false;
+		do {
+			j = 0;
+			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
+			newClient = sc.next();
+			newClient = newClient.trim();
+			while(j < notesClientsActives.size()) {
+				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
+					existe = true;
+				} else { existe = false; }
+				j++;
+			}
+			if(existe) logger.info("OUTPUT", "Ce client existe deja !");
+		} while(newClient.equals("") || existe);
+		
+		// On ajoute la nouvelle note dans la liste des notes de clients encore actives
+		notesClientsActives.add(new NoteClient(newClient));
+		logger.info("PROGRAM", "Le client '" + newClient + "' a bien ete cree.");
+	}
 	
 	public void ajouterProduitStockRestaurant(){
 		String nom;

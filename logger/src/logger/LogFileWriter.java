@@ -18,7 +18,7 @@ public class LogFileWriter {
 			LocalDateTime now = LocalDateTime.now();
 			String date = now.getYear() + "-" + now.getMonthValue() + "-" + now.getDayOfMonth() + " " + now.getHour() + ":" + now.getMinute() + ":" + now.getSecond();
 			FileWriter fw = new FileWriter("logfile",true);
-			fw.write(date + " - CATEGORIE : " + categorie + " - LEVEL : " + level + " - " + message + "\n");
+			fw.write("DATE("+date+") - CATEGORY (" + categorie + ") - LEVEL (" + level + ") - " + message + "\n");
 			fw.close();
 		}
 		catch(IOException ioe){

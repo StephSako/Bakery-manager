@@ -12,8 +12,6 @@ public class Caisse {
 	}
 	
 	public Restaurant debutDeJournee() {	
-		
-		
 		// Creation du restaurant
 		Restaurant stockRestaurant = new Restaurant("StudioBagel");
 		stockRestaurant.stock.add(new Produit("Bagel", 2.5, 20));
@@ -25,7 +23,6 @@ public class Caisse {
 		// Creation du LogFileWriter
 		LogFileWriter lfw = new LogFileWriter();
 		lfw.ecrireFinLogFile("OUTPUT", "INFO", "Initialisation ...");
-		//Saisie saisie = new Saisie();
 		
 		logger.info("OUTPUT", "-------------------------------------------------------------\nBienvenue sur l'interface de la caisse du restaurant Bagel !\n-------------------------------------------------------------\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n");
 		
@@ -50,16 +47,8 @@ public class Caisse {
 		case "b": 	stockRestaurant.ajouterProduitStockRestaurant(); break;
 		
 		//CREER UN CLIENT
-		case "c":	
-					String nomClient;
-					logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
-					nomClient = sc.next();
-					nomClient = nomClient.trim();
+		case "c":	stockRestaurant.existenceClientEtAjout(); break;
 					
-					// On ajoute la nouvelle note dans la liste des notes de clients encore actives
-					stockRestaurant.notesClientsActives.add(new NoteClient(nomClient));
-					logger.info("PROGRAM", "Le client '" + nomClient + "' a bien ete cree."); break;
-		
 		//AJOUTER UN PRODUIT A UN CLIENT
 		case "d": 	// On recherche la note du client si elle existe grace a son nom ce qui permet d'ouvrir plusieurs notes simultanement				
 					NoteClient noteRecovered = stockRestaurant.ouvrirNote();
@@ -72,30 +61,24 @@ public class Caisse {
 					}
 					
 		//AFFICHER UN CLIENT
-		case "e": 	NoteClient noteToPrint;
-					do {
-						noteToPrint = stockRestaurant.ouvrirNote();
-						if (noteToPrint == null) {
-							logger.error("PROGRAM", "Aucune note n'a ete creee avec ce nom");
-						}
-					} while (noteToPrint == null);
-		
-					// On affiche la note du client
+		case "e": 	NoteClient noteToPrint = stockRestaurant.ouvrirNote();
+					if (noteToPrint == null) {
+						logger.error("PROGRAM", "Aucune note n'a ete creee avec ce nom"); break;
+					} else {
+						// On affiche la note du client
 						logger.info("PROGRAM", noteToPrint.afficherNoteAPayer()); break;
+					}
 					
 		//CLOTURER NOTE
 		case "f": 
-					NoteClient noteToFence;
-					do {
-						noteToFence = stockRestaurant.ouvrirNote();
-						if (noteToFence == null) {
-							logger.error("PROGRAM", "Aucune note n'a ete creee avec ce nom");
-						}
-					} while(noteToFence == null);			
-			
-					// On affiche la note du client
-					noteToFence.cloturerNoteClient(stockRestaurant); break;
-		
+					NoteClient noteToFence = stockRestaurant.ouvrirNote();
+					if (noteToFence == null) {
+						logger.error("PROGRAM", "Aucune note n'a ete creee avec ce nom"); break;
+					} else {
+						// On affiche la note du client
+						noteToFence.cloturerNoteClient(stockRestaurant); break;
+					}
+					
 		//TOUTES LES CLIENTS ACTIFS
 		case "g": logger.info("PROGRAM", stockRestaurant.afficherNotes()); break;
 		
@@ -104,6 +87,7 @@ public class Caisse {
 				
 		case "q": 
 				logger.info("PROGRAM", "Vous quittez la caisse enregistreuse ...");
+				System.exit(1);
 				//faire quitter la caisse enregistreuse
 				
 		default: logger.error("PROGRAM", "Commande inconnue. Tappez 'help' pour l'aide"); break;
