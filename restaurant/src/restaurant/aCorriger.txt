@@ -19,4 +19,8 @@ SIGNIFIE qu'il faut decoupler le code : les interactions doivent etre exterieure
 realiser que la fonctionnalite voulue comme la gestion de la memoire d'un tableau, l'ajout d'une note etc...
 Dans lexemple d'une API, les fonctions ne devraient que ajouter une note dans une base de donnees
 
+<<<<<<< Updated upstream
 TEST
+=======
+TEST SAKO
+>>>>>>> Stashed changes
