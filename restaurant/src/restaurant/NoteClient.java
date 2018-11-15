@@ -51,23 +51,20 @@ public class NoteClient {
 	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
 		for (Produit produitRestau : restaurant.stock) {
 			if (produitRestau.nom == newProduit.nom) {
-				if (newProduit.stock > produitRestau.stock) { // Si le client est trop gourmand ...
+				if (newProduit.stock > produitRestau.stock && (!(newProduit.nom.equals("Cafe")))) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
 					logger.info("PROGRAM", "\nIl n'y a pas assez de "+newProduit.nom+".\nVotre commande comportera seulement "+newProduit.stock+" "+newProduit.nom+"(s).\n");
-					System.out.println("1");
 					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
-					System.out.println("2");
 				}
-				else if (newProduit.stock == produitRestau.stock) { // Si le client est trop gourmand ...
+				else if (newProduit.stock == produitRestau.stock && (!(newProduit.nom.equals("Cafe")))) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
-					logger.info("PROGRAM", "\nC'etait les derniers " + newProduit.nom + "s. Le produit " + newProduit.nom + " est supprimé.\n");
+					logger.info("PROGRAM", "\nC'etait les derniers " + newProduit.nom + "s. Le produit " + newProduit.nom + " est supprime.\n");
 					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
 				}
-				else if (newProduit.stock < produitRestau.stock) {
+				else if (newProduit.stock < produitRestau.stock || (newProduit.nom.equals("Cafe"))) {
 					logger.info("PROGRAM", "\nMerci ! La commande a ete enregistree.\n");
 					if(!(newProduit.nom.equals("Cafe"))) produitRestau.stock -= newProduit.stock;
-				}
-				break;
+				} break;
 			}
 		}
 	}
@@ -136,7 +133,7 @@ public class NoteClient {
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
 		
 		// On demande si le client dispose d'une remise de 10%
-		logger.info("input", "Le client dispose-t-il d'une remise de 10% ?");
+		logger.info("input", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)");
 		if (sc.next().toLowerCase().equals("o")) this.remise();
 		
 		// On affiche la note
