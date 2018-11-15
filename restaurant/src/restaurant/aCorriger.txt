@@ -15,7 +15,8 @@ Ce qu'il reste a faire par rapport au sujet du prof :
 - completer le readme
 - proposer une remise de 10% au moment de la cloture dune note
   
-séparer les interactions avec l'utilisateur (input / output) du code métier qui réalise les opérations 
-il ne doit pas être nécessaire de changer le code métier pour l'utiliser dans une API HTTP pour un site web
---> WTFFF ? demander au prof ce que c'est cense dire
-
+sï¿½parer les interactions avec l'utilisateur (input / output) du code mï¿½tier qui rï¿½alise les opï¿½rations 
+il ne doit pas ï¿½tre nï¿½cessaire de changer le code mï¿½tier pour l'utiliser dans une API HTTP pour un site web
+SIGNIFIE qu'il faut dÃ©coupler le code : les interactions doivent etre exterieures a la fonction qui ne doit
+realiser que la fonctionnalite voulue comme la gestion de la memoire d'un tableau, l'ajout d'une note etc...
+Dans lexemple d'une API, les fonctions ne devraient que ajouter une note dans une base de onnÃ©es
