@@ -1,13 +1,7 @@
-Verifier qu'un utilisateur n'existe pas deja lors de la creation d'une note
--> FAIT mais je suis pas sure que ce soit parfait
-
--------------------------------------------------------------------------
-
 Ce qu'il reste a faire par rapport au sujet du prof :
 
 - historiser les evenements (logfile)
 - testframework
 - scripts (lancement des tests)
 - completer le readme
-- afficher la remise sur la note + l'appliquer dans le calcul si elle est appliquée
-- si on demande le nombre restant ou plus de produit, bug (je suis dessus)
+- afficher la remise sur la note + l'appliquer dans le calcul du prixTOTAL si elle est appliquée (machette est dessus)

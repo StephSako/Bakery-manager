@@ -54,7 +54,9 @@ public class NoteClient {
 				if (newProduit.stock > produitRestau.stock) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
 					logger.info("PROGRAM", "\nIl n'y a pas assez de "+newProduit.nom+".\nVotre commande comportera seulement "+newProduit.stock+" "+newProduit.nom+"(s).\n");
+					System.out.println("1");
 					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
+					System.out.println("2");
 				}
 				else if (newProduit.stock == produitRestau.stock) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
@@ -65,6 +67,7 @@ public class NoteClient {
 					logger.info("PROGRAM", "\nMerci ! La commande a ete enregistree.\n");
 					if(!(newProduit.nom.equals("Cafe"))) produitRestau.stock -= newProduit.stock;
 				}
+				break;
 			}
 		}
 	}
