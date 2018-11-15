@@ -29,9 +29,7 @@ public class NoteClient {
 		this.TVATotale = 0.0;
 	}
 	
-	
 	// METHODES
-	
 	
 	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
 		int j; boolean existe = false;
@@ -97,15 +95,20 @@ public class NoteClient {
 		enleverProduitDuStock(restaurant, newProduit); //marche pas
 	}
 	
-	public String afficherNoteAPayer() { //ca affiche le mauvais stock
-		String noteToPrint = "";
-		
+	private void calculPrix() {
 		// Calcul du prix total HT
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
 		// Calcul du prix total TTC
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
 		// Calcul de la TVA totale encaissee
 		this.TVATotale = this.prixTotalHT * TauxTVA;
+	}
+	
+	public String afficherNoteAPayer() { //ca affiche le mauvais stock
+		String noteToPrint = "";
+		
+		// On calcule les prix HT et TTC
+		calculPrix();
 		
 		// On affiche la note a payer
 		noteToPrint += "\nVoici la note a payer : \n";
@@ -116,12 +119,23 @@ public class NoteClient {
 		return noteToPrint;
 	}
 	
+	public void remise() {
+		//TODO
+	}
+	
 	public void cloturerNoteClient(Restaurant restaurant) {
 		
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
-				
+		
+		// On demande si le client dispose d'une remise de 10%
+		logger.info("input", "Le client dispose-t-il d'une remise de 10% ?");
+		if (sc.next().toLowerCase().equals("o")) this.remise();
+		
+		// On affiche la note
+		logger.info("output", this.afficherNoteAPayer());
+		
 		// On supprime la note dans la liste des notes actives de la caisse
 		int h = 0;
 		while(h < restaurant.notesClientsActives.size()) {
