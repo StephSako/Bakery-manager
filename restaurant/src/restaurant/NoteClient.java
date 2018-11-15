@@ -19,7 +19,6 @@ public class NoteClient {
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
 	
-	
 	// CONSTRUCTEUR
 	
 	public NoteClient(String nomClient) {
@@ -52,9 +51,14 @@ public class NoteClient {
 	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
 		for (Produit produitRestau : restaurant.stock) {
 			if (produitRestau.nom == newProduit.nom) {
-				if (newProduit.stock >= produitRestau.stock) { // Si le client est trop gourmand ...
+				if (newProduit.stock > produitRestau.stock) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
 					logger.info("PROGRAM", "\nIl n'y a pas assez de "+newProduit.nom+".\nVotre commande comportera seulement "+newProduit.stock+" "+newProduit.nom+"(s).\n");
+					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
+				}
+				else if (newProduit.stock == produitRestau.stock) { // Si le client est trop gourmand ...
+					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
+					logger.info("PROGRAM", "\nC'etait les derniers " + newProduit.nom + "s. Le produit " + newProduit.nom + " est supprimé.\n");
 					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
 				}
 				else if (newProduit.stock < produitRestau.stock) {
@@ -124,7 +128,6 @@ public class NoteClient {
 	}
 	
 	public void cloturerNoteClient(Restaurant restaurant) {
-		
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);

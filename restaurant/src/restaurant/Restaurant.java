@@ -7,22 +7,18 @@ import logger.*;
 public class Restaurant {
 	
 	// CHAMPS
+	
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
-	
 	// Liste des produits en stock
 	public LinkedList<Produit> stock = new LinkedList<Produit>();
-	
 	// Liste des notes de clients actives/ouvertes/creees
 	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>();
-	
 	public String nom;
 	public double rentreeArgent;
 	public double totalTVAfacturee;
-	
 	DecimalFormat df = new DecimalFormat("0.00");
 	Saisie saisie = new Saisie();
-	
 	
 	// CONSTRUCTEUR
 	
@@ -32,17 +28,14 @@ public class Restaurant {
 		this.rentreeArgent = 0.0;
 	}
 	
-	
 	// METHODES
-	
 	
 	public void existenceClientEtAjout() {
 		String newClient; int j; boolean existe = false;
 		do {
 			j = 0;
 			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
-			newClient = sc.next();
-			newClient = newClient.trim();
+			newClient = (sc.next()).trim();
 			while(j < notesClientsActives.size()) {
 				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
 					existe = true;
@@ -58,14 +51,9 @@ public class Restaurant {
 	}
 	
 	public void ajouterProduitStockRestaurant(){
-		String nom;
-		double prix;
-		int stock;
-		
-		nom = sc.next();
-		nom = nom.trim();
-		prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
-		stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
+		String nom = (sc.next()).trim();
+		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
+		int stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
 		
 		this.stock.add(new Produit(nom, prix, stock));
 	}
@@ -79,11 +67,7 @@ public class Restaurant {
 	}
 	
 	public NoteClient ouvrirNote() {
-		
-		String nomClientSearched;
-				
-		nomClientSearched = sc.next();
-		nomClientSearched = nomClientSearched.trim();
+		String nomClientSearched = (sc.next()).trim();
 		
 		int i = 0;
 		while(i < this.notesClientsActives.size()){
@@ -100,23 +84,15 @@ public class Restaurant {
 		for (NoteClient notes : this.notesClientsActives) {
 			notesToPrint += "ID Client : " + notes.nomClient;
 			notesToPrint += notes.afficherNoteAPayer()+"\n";
-		}
-		
+		}		
 		if (notesToPrint == "") return "Il n'y a aucune note en cours.";
 		return notesToPrint;
 	}
 	
-	public void ajouterRentreeArgent(double rentreeArgent) {
-		this.rentreeArgent += rentreeArgent;
-	}
-	
-	public void ajoutertotalTVAfacturee(double totalTVAfacturee) {
-		this.totalTVAfacturee += totalTVAfacturee;
-	}
+	public void ajouterRentreeArgent(double rentreeArgent){ this.rentreeArgent += rentreeArgent; }
+	public void ajoutertotalTVAfacturee(double totalTVAfacturee){ this.totalTVAfacturee += totalTVAfacturee; }
 	
 	public String donneesComptable() {
-		String donnees = "";
-		donnees += "Total des rentrees d'argent : "+df.format(rentreeArgent)+"\nTotal de la TVA facturee : "+df.format(totalTVAfacturee); 
-		return donnees;
+		return "Total des rentrees d'argent : "+df.format(rentreeArgent)+"\nTotal de la TVA facturee : "+df.format(totalTVAfacturee);
 	}
 }
