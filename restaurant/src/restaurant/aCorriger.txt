@@ -18,3 +18,5 @@ il ne doit pas etre necessaire de changer le code metier pour l'utiliser dans un
 SIGNIFIE qu'il faut decoupler le code : les interactions doivent etre exterieures a la fonction qui ne doit
 realiser que la fonctionnalite voulue comme la gestion de la memoire d'un tableau, l'ajout d'une note etc...
 Dans lexemple d'une API, les fonctions ne devraient que ajouter une note dans une base de donnees
+
+TEST
