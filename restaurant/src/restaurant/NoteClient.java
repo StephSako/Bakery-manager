@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
 
-public class NoteClient implements NoteClientI{
+public class NoteClient {
 
 	// CHAMPS
 	
@@ -81,7 +81,6 @@ public class NoteClient implements NoteClientI{
 	
 	public void ajouterProduitNoteClient(Restaurant restaurant) {
 		String nom = ""; double prix = 0; int stock = 0;
-		logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
 		for (Produit produit : restaurant.stock) logger.info("OUTPUT", produit.nom + " - " + produit.stock + " unites");
 		
 		// On verifie que le produit existe bien dans le stock et on cree le produit avec le bon prix et le bon nom
@@ -130,8 +129,6 @@ public class NoteClient implements NoteClientI{
 				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
 				break;
 			} h++;
-		}
-		
-		logger.info("PROGRAM", "Merci ! La note a bien ete encaissee.");
+		}	
 	}
 }

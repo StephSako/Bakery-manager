@@ -44,24 +44,29 @@ public class Caisse {
 		case "a": 	logger.info("PROGRAM", stockRestaurant.afficherStock()); break;
 		
 		//AJOUTER UN PRODUIT AU STOCK
-		case "b": 	stockRestaurant.ajouterProduitStockRestaurant(); break;
+		case "b": 	
+					logger.info("OUTPUT", "Nom du produit a ajouter :");
+					stockRestaurant.ajouterProduitStockRestaurant(); break;
 		
 		//CREER UN CLIENT
 		case "c":	stockRestaurant.existenceClientEtAjout(); break;
 					
 		//AJOUTER UN PRODUIT A UN CLIENT
 		case "d": 	// On recherche la note du client si elle existe grace a son nom ce qui permet d'ouvrir plusieurs notes simultanement				
+					logger.info("OUTPUT", "Saisissez le nom du client : ");
 					NoteClient noteRecovered = stockRestaurant.ouvrirNote();
 					if (noteRecovered == null) {
 						logger.error("PROGRAM", "Aucune note n'a ete creee a ce nom"); break;
 					}
 					else {												
 						// On saisie le produit a ajouter dans la note du client recuperee
+						logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
 						noteRecovered.ajouterProduitNoteClient(stockRestaurant); break;
 					}
 					
 		//AFFICHER UN CLIENT
-		case "e": 	NoteClient noteToPrint = stockRestaurant.ouvrirNote();
+		case "e": 	logger.info("OUTPUT", "Saisissez le nom du client : ");
+					NoteClient noteToPrint = stockRestaurant.ouvrirNote();
 					if (noteToPrint == null) {
 						logger.error("PROGRAM", "Aucune note n'a ete creee avec ce nom"); break;
 					} else {
@@ -71,12 +76,14 @@ public class Caisse {
 					
 		//CLOTURER NOTE
 		case "f": 
+					logger.info("OUTPUT", "Saisissez le nom du client : ");
 					NoteClient noteToFence = stockRestaurant.ouvrirNote();
 					if (noteToFence == null) {
 						logger.error("PROGRAM", "Aucune note n'a ete creee avec ce nom"); break;
 					} else {
 						// On affiche la note du client
-						noteToFence.cloturerNoteClient(stockRestaurant); break;
+						noteToFence.cloturerNoteClient(stockRestaurant);
+						logger.info("PROGRAM", "Merci ! La note a bien ete encaissee."); break;
 					}
 					
 		//TOUTES LES CLIENTS ACTIFS

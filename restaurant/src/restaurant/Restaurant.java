@@ -62,7 +62,6 @@ public class Restaurant {
 		double prix;
 		int stock;
 		
-		logger.info("OUTPUT", "Nom du produit a ajouter :");
 		nom = sc.next();
 		nom = nom.trim();
 		prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
@@ -82,8 +81,7 @@ public class Restaurant {
 	public NoteClient ouvrirNote() {
 		
 		String nomClientSearched;
-		logger.info("OUTPUT", "Saisissez le nom du client : ");
-		
+				
 		nomClientSearched = sc.next();
 		nomClientSearched = nomClientSearched.trim();
 		
