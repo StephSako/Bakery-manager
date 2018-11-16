@@ -48,7 +48,7 @@ public class Caisse {
 		
 		if (commands.get(lettre) != null) commands.get(lettre).run();
 		else logger.error("PROGRAM", "Commande inconnue. Tappez 'help' pour l'aide");
-		logger.info("OUTPUT", "Que voulez-vous faire ? ('h' pour afficher l'aide)\n");
+		logger.info("OUTPUT", "\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n");
 	}	
 	public void finDeJournee() {
 		Restaurant stockRestaurant = new Restaurant("StudioBagel");
