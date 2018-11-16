@@ -51,17 +51,32 @@ public class Restaurant {
 	}
 	
 	public void ajouterProduitStockRestaurant(){
+		logger.info("OUTPUT", "Le produit a-t-il un stock finis ? 'o'/'n'");
+		String lettre = sc.next();
+		
+		while (!(lettre.equals("o")) && !(lettre.equals("n"))) {
+			logger.error("OUTPUT", "Saisissez 'o' ou 'n' pour déterminer si le produit a un stock :");
+			lettre = (sc.next()).trim();
+		}
+		
+		logger.info("OUTPUT", "Nom du produit a ajouter :");
 		String nom = (sc.next()).trim();
 		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
-		int stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
 		
-		this.stock.add(new Produit(nom, prix, stock));
+		// On créé en le bon objet en fonction de son stock fini ou infini
+		if (lettre.equals("o")){
+			int stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
+			this.stock.add(new ProduitStockFinis(nom, prix, stock));
+		}
+		else this.stock.add(new ProduitStockInfinis(nom, prix));
 	}
 	
 	public String afficherStock() {
 		String stockToPrint = "";
 		for (Produit produit : stock) {
-			stockToPrint += "'" + produit.nom + "' - " + df.format((produit.prix * 1.1)) + " euros TTC - " + produit.stock + " en stock\n";
+			stockToPrint += produit.nom + " - " + df.format((produit.prix * 1.1)) + " euros TTC - ";
+			if (produit instanceof ProduitStockInfinis) stockToPrint += "stock illimite\n";
+			else stockToPrint += produit.stock + " unites\n";
 		}
 		return stockToPrint;
 	}

@@ -10,7 +10,6 @@ public class Operation {
 	}
 	
 	public void casB (Logger logger, Restaurant stockRestaurant) {
-		logger.info("OUTPUT", "Nom du produit a ajouter :");
 		stockRestaurant.ajouterProduitStockRestaurant();
 	}
 	
