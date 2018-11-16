@@ -50,7 +50,7 @@ public class Operation {
 		} else {
 			// On affiche la note du client
 			noteToFence.cloturerNoteClient(stockRestaurant);
-			logger.info("PROGRAM", "Merci ! La note a bien ete encaissee.");
+			logger.info("PROGRAM", "Merci ! La note a bien ete encaissee.\n");
 		}
 	}	
 	

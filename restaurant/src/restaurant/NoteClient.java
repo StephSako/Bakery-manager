@@ -33,8 +33,8 @@ public class NoteClient {
 	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
 		int j; boolean existe = false;
 		do {
-			j = 0; nom = sc.next();
-			nom = nom.trim();
+			j = 0;
+			nom = (sc.next()).trim();
 			while(j < restaurant.stock.size()) {
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;
@@ -110,16 +110,14 @@ public class NoteClient {
 	
 	public String afficherNoteAPayer() { //ca affiche le mauvais stock
 		String noteToPrint = "";
-		
 		// On calcule les prix HT et TTC
 		calculPrix();
 		
 		// On affiche la note a payer
 		noteToPrint += "\nVoici la note a payer : \n";
-		for (Produit produit : panier) {
-			noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
-		}
-		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros\n";
+		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
+		
+		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros";
 		return noteToPrint;
 	}
 	

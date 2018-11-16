@@ -108,6 +108,6 @@ public class Restaurant {
 	public void ajoutertotalTVAfacturee(double totalTVAfacturee){ this.totalTVAfacturee += totalTVAfacturee; }
 	
 	public String donneesComptable() {
-		return "Total des rentrees d'argent : "+df.format(rentreeArgent)+"\nTotal de la TVA facturee : "+df.format(totalTVAfacturee);
+		return "Total des rentrees d'argent : "+df.format(rentreeArgent)+" Euros\nTotal de la TVA facturee : " + df.format(totalTVAfacturee) + " Euros.\n";
 	}
 }
