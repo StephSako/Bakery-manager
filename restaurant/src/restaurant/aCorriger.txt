@@ -4,4 +4,4 @@ Ce qu'il reste a faire par rapport au sujet du prof :
 - testframework
 - scripts (lancement des tests)
 - completer le readme
-- afficher la remise sur la note + l'appliquer dans le calcul du prixTOTAL si elle est appliquee (machette est dessus)
+- afficher la remise sur la note + l'appliquer dans le calcul du prixTOTAL si elle est appliquee (machette est dessus ... ca bug)

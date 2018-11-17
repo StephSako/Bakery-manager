@@ -91,12 +91,12 @@ public class NoteClient {
 		//on initialise le stock (nb de produits commandes tapes par l'utilisateur)
 		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
 		newProduit.stock = stock;
+
+		// On retire le produit du stock du restaurant
+		enleverProduitDuStock(restaurant, newProduit);
 		
 		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
 		produitDejaCommande(restaurant, newProduit);
-
-		// On retire le produit du stock du restaurant
-		enleverProduitDuStock(restaurant, newProduit); //marche pas
 	}
 	
 	private void calculPrix() {
