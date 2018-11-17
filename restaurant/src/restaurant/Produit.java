@@ -13,4 +13,9 @@ public abstract class Produit {
 		this.prix = prix;
 		this.stock = stock;
 	}
+	
+	public Produit(String nom, double prix) {
+		this.nom = nom;
+		this.prix = prix;
+	}
 }
