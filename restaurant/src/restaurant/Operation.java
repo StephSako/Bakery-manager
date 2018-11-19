@@ -24,7 +24,7 @@ public class Operation {
 		if (noteRecovered == null) {
 			logger.error("PROGRAM", "Aucune note n'a ete creee a ce nom");
 		}
-		else {												
+		else {
 			// On saisie le produit a ajouter dans la note du client recuperee
 			logger.info("OUTPUT", "Saisir le produit a ajouter parmi : ");
 			noteRecovered.ajouterProduitNoteClient(stockRestaurant);
@@ -59,7 +59,7 @@ public class Operation {
 	}
 	
 	public void casH (Logger logger) {
-		logger.info("PROGRAM", "'h' : Afficher cette fenetre d'aide.\n'a' : Afficher le stock de Bagel\n'b' : Ajouter un produit au stock du restaurant" +
+		logger.info("PROGRAM", "'h' : Afficher cette fenetre d'aide.\n'a' : Afficher le stock du restaurant\n'b' : Ajouter un produit au stock du restaurant" +
 		"\n'c' : Creer une note d'un client\n'd' : Ajouter un produit dans une note de client\n'e' : Afficher la note d'un client\n" + 
 		"'f' : Cloturer et faire payer la note d'un client\n'g' : Afficher toutes les notes actives\n'i' : Afficher les donnees comptables\n'q' : Quitter le programme");
 	}

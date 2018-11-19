@@ -18,6 +18,7 @@ public class NoteClient {
 	public static Saisie saisie = new Saisie();
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
+	public LogFileWriter lfw = new LogFileWriter();
 	
 	// CONSTRUCTEUR
 	
@@ -35,34 +36,34 @@ public class NoteClient {
 		do {
 			j = 0;
 			nom = (sc.next()).trim();
+			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nom);
 			while(j < restaurant.stock.size()) {
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;
 					nom = restaurant.stock.get(j).nom;
 					existe = true;
+					lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+nom+" existe dans le stock");
 				} j++;
 			}
 			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\nRetapez le produit :");			
 		} while (nom.equals("") || !existe);
 		Produit newProduit = new ProduitStockFinis(nom, prix, stock);
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+nom+" est cree");
 		return newProduit;
 	}
 	
 	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
 		for (Produit produitRestau : restaurant.stock) {
 			if (produitRestau.nom == newProduit.nom && !(produitRestau instanceof ProduitStockInfinis)) {
-				if (newProduit.stock > produitRestau.stock) { // Si le client est trop gourmand ...
+				if (newProduit.stock >= produitRestau.stock) { // Si le client est trop gourmand ...
 					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
-					logger.info("PROGRAM", "\nIl n'y a pas assez de "+newProduit.nom+".\nVotre commande comportera seulement "+newProduit.stock+" "+newProduit.nom+"(s).\n");
+					logger.info("PROGRAM", newProduit.stock+" "+newProduit.nom+" ajoute(s) (rupture de stock)");
 					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
-				}
-				else if (newProduit.stock == produitRestau.stock) { // Si le client est trop gourmand ...
-					newProduit.stock = produitRestau.stock; // On ajoute qu'avec les dernieres ressources disponibles
-					logger.info("PROGRAM", "\nC'etait les derniers " + newProduit.nom + "s. Le produit " + newProduit.nom + " est supprime.\n");
-					restaurant.stock.remove(produitRestau); // Le produit devient en rupture de stock : on le supprime du stock
+					lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+produitRestau.nom+" est en rupture de stock");
 				}
 				else if (newProduit.stock < produitRestau.stock) {
 					produitRestau.stock -= newProduit.stock;
+					lfw.ecrireFinLogFile("OUTPUT", "PROGRAM", newProduit.stock+" "+newProduit.nom+" retires du stock. Il en reste "+produitRestau.stock);
 				} break;
 			}
 		}
@@ -75,22 +76,25 @@ public class NoteClient {
 			if (panier.get(m).nom.equals(newProduit.nom)) {
 				panier.get(m).stock += newProduit.stock;
 				alreadyCommanded = true;
+				lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+newProduit.nom+" a deja ete commande");
 				break;
 			} m++;
 		}
 		if (!alreadyCommanded) this.panier.add(newProduit);
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+newProduit.nom+" a ete ajoute au panier");
 	}
 	
 	public void ajouterProduitNoteClient(Restaurant restaurant) {
 		String nom = ""; double prix = 0; int stock = 0;
 		logger.info("OUTPUT", restaurant.afficherStock());
-		
+
 		// On verifie que le produit existe bien dans le stock et on cree le produit avec le bon prix et le bon nom
 		Produit newProduit = existenceProduitEtAjout(restaurant, nom, prix, stock);
 		
 		//on initialise le stock (nb de produits commandes tapes par l'utilisateur)
 		stock = saisie.getSaisieInt(sc, logger, "Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
 		newProduit.stock = stock;
+		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+stock);
 
 		// On retire le produit du stock du restaurant
 		enleverProduitDuStock(restaurant, newProduit);
@@ -102,10 +106,14 @@ public class NoteClient {
 	private void calculPrix() {
 		// Calcul du prix total HT
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul du prix total HT : "+df.format(prixTotalHT));
+
 		// Calcul du prix total TTC
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul du prix total TTC : "+df.format(prixTotalTTC));
 		// Calcul de la TVA totale encaissee
 		this.TVATotale = this.prixTotalHT * TauxTVA;
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul de la TVA totale : "+df.format(TVATotale));
 	}
 	
 	public String afficherNoteAPayer() { //ca affiche le mauvais stock
@@ -118,6 +126,7 @@ public class NoteClient {
 		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
 		
 		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros\n";
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note est affichee");
 		return noteToPrint;
 	}
 	
@@ -128,20 +137,26 @@ public class NoteClient {
 	public void cloturerNoteClient(Restaurant restaurant) {
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Ajout de "+TVATotale+" (TVA), donnees comptables");
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables");
 		
 		// On demande si le client dispose d'une remise de 10%
-		logger.info("input", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)");
-		if (sc.next().toLowerCase().equals("o")) this.remise();
+		logger.info("INPUT", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)");
+		String remise = sc.next();
+		if (remise.toLowerCase().equals("o")) this.remise();
+		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+remise);
 		
 		// On affiche la note
-		logger.info("output", this.afficherNoteAPayer());
+		logger.info("OUTPUT", this.afficherNoteAPayer());
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note est affichee");
 		
 		// On supprime la note dans la liste des notes actives de la caisse
 		int h = 0;
 		while(h < restaurant.notesClientsActives.size()) {
 			if (restaurant.notesClientsActives.get(h).nomClient == this.nomClient) {
 				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
+				lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note "+nomClient+" n'est plus active");
 				break;
 			} h++;
 		}	

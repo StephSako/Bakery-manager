@@ -17,8 +17,9 @@ public class Restaurant {
 	public String nom;
 	public double rentreeArgent;
 	public double totalTVAfacturee;
-	DecimalFormat df = new DecimalFormat("0.00");
-	Saisie saisie = new Saisie();
+	public DecimalFormat df = new DecimalFormat("0.00");
+	public Saisie saisie = new Saisie();
+	public LogFileWriter lfw = new LogFileWriter();
 	
 	// CONSTRUCTEUR
 	
@@ -36,39 +37,48 @@ public class Restaurant {
 			j = 0;
 			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
 			newClient = (sc.next()).trim();
+			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+newClient);
 			while(j < notesClientsActives.size()) {
 				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
 					existe = true;
 				} else { existe = false; }
 				j++;
 			}
-			if(existe) logger.info("OUTPUT", "Ce client existe deja !");
+			if(existe) {
+				logger.info("OUTPUT", "Ce client existe deja !");
+				lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le client "+newClient+" existe deja");
+			}
 		} while(newClient.equals("") || existe);
 		
 		// On ajoute la nouvelle note dans la liste des notes de clients encore actives
 		notesClientsActives.add(new NoteClient(newClient));
 		logger.info("PROGRAM", "Le client '" + newClient + "' a bien ete cree.");
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le client "+newClient+" est cree");
 	}
 	
 	public void ajouterProduitStockRestaurant(){
-		logger.info("OUTPUT", "Le produit a-t-il un stock finis ? 'o'/'n'");
-		String lettre = sc.next();
-		
-		while (!(lettre.equals("o")) && !(lettre.equals("n"))) {
-			logger.error("OUTPUT", "Saisissez 'o' ou 'n' pour déterminer si le produit a un stock :");
+		String lettre;
+		do {
+			logger.info("OUTPUT", "Le produit a-t-il un stock fini ? 'o'/'n'");
 			lettre = (sc.next()).trim();
-		}
+			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+lettre);
+		} while (!(lettre.equals("o")) && !(lettre.equals("n")));
 		
 		logger.info("OUTPUT", "Nom du produit a ajouter :");
 		String nom = (sc.next()).trim();
-		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
+		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nom);
 		
-		// On créé en le bon objet en fonction de son stock fini ou infini
+		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
+		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+prix);
+		
+		// On cree le bon objet en fonction de son stock fini ou infini
 		if (lettre.equals("o")){
 			int stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
+			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+stock);
 			this.stock.add(new ProduitStockFinis(nom, prix, stock));
 		}
 		else this.stock.add(new ProduitStockInfinis(nom, prix));
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+nom+" a ete ajoute au stock du restaurant");
 	}
 	
 	public String afficherStock() {
@@ -78,15 +88,17 @@ public class Restaurant {
 			if (produit instanceof ProduitStockInfinis) stockToPrint += "stock illimite\n";
 			else stockToPrint += produit.stock + " unites\n";
 		}
+	lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le stock du restaurant est affiche");
 		return stockToPrint;
 	}
 	
 	public NoteClient ouvrirNote() {
 		String nomClientSearched = (sc.next()).trim();
-		
+		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nomClientSearched);
 		int i = 0;
 		while(i < this.notesClientsActives.size()){
 			if (this.notesClientsActives.get(i).nomClient.equals(nomClientSearched)) {
+				lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note "+nomClientSearched+" est recuperee");
 				return this.notesClientsActives.get(i);
 			}
 			i++;
@@ -100,14 +112,18 @@ public class Restaurant {
 			notesToPrint += "ID Client : " + notes.nomClient;
 			notesToPrint += notes.afficherNoteAPayer()+"\n";
 		}		
-		if (notesToPrint == "") return "Il n'y a aucune note en cours.";
+		if (notesToPrint == "") {
+			lfw.ecrireFinLogFile("PROGRAM", "INFO", "Aucune note trouvee");
+			return "Il n'y a aucune note en cours.";
+		}
 		return notesToPrint;
 	}
 	
-	public void ajouterRentreeArgent(double rentreeArgent){ this.rentreeArgent += rentreeArgent; }
-	public void ajoutertotalTVAfacturee(double totalTVAfacturee){ this.totalTVAfacturee += totalTVAfacturee; }
+	public void ajouterRentreeArgent(double rentreeArgent){ this.rentreeArgent += rentreeArgent;}
+	public void ajoutertotalTVAfacturee(double totalTVAfacturee){ this.totalTVAfacturee += totalTVAfacturee;}
 	
 	public String donneesComptable() {
+		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Les donnees comptables sont affichees");
 		return "Total des rentrees d'argent : "+df.format(rentreeArgent)+" Euros\nTotal de la TVA facturee : " + df.format(totalTVAfacturee) + " Euros.\n";
 	}
 }
