@@ -36,12 +36,8 @@ public class Restaurant {
 		do {
 			j = 0;
 			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
-<<<<<<< HEAD
-			newClient = (sc.next()).trim();
-			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+newClient);
-=======
 			newClient = saisie.getSaisieString(sc, logger);
->>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
+			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+newClient);
 			while(j < notesClientsActives.size()) {
 				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
 					existe = true;
@@ -61,30 +57,17 @@ public class Restaurant {
 	}
 	
 	public void ajouterProduitStockRestaurant(){
-<<<<<<< HEAD
 		String lettre;
 		do {
 			logger.info("OUTPUT", "Le produit a-t-il un stock fini ? 'o'/'n'");
-			lettre = (sc.next()).trim();
+			lettre = saisie.getSaisieString(sc, logger);
 			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+lettre);
 		} while (!(lettre.equals("o")) && !(lettre.equals("n")));
 		
 		logger.info("OUTPUT", "Nom du produit a ajouter :");
-		String nom = (sc.next()).trim();
+		String nom = saisie.getSaisieString(sc, logger);
 		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nom);
 		
-=======
-		logger.info("OUTPUT", "Le produit a-t-il un stock finis ? 'o'/'n'");
-		String lettre = sc.next();
-		
-		while (!(lettre.equals("o")) && !(lettre.equals("n"))) {
-			logger.error("OUTPUT", "Saisissez 'o' ou 'n' pour déterminer si le produit a un stock :");
-			lettre = saisie.getSaisieString(sc, logger);
-		}
-		
-		logger.info("OUTPUT", "Nom du produit a ajouter :");
-		String nom = saisie.getSaisieString(sc, logger);
->>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
 		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
 		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+prix);
 		
@@ -110,13 +93,9 @@ public class Restaurant {
 	}
 	
 	public NoteClient ouvrirNote() {
-<<<<<<< HEAD
-		String nomClientSearched = (sc.next()).trim();
-		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nomClientSearched);
-=======
 		String nomClientSearched = saisie.getSaisieString(sc, logger);
+		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nomClientSearched);
 		
->>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
 		int i = 0;
 		while(i < this.notesClientsActives.size()){
 			if (this.notesClientsActives.get(i).nomClient.equals(nomClientSearched)) {
