@@ -60,7 +60,7 @@ public class Restaurant {
 		String lettre;
 		do {
 			logger.info("OUTPUT", "Le produit a-t-il un stock fini ? 'o'/'n'");
-			lettre = saisie.getSaisieString(sc, logger);
+			lettre = (sc.next()).trim();
 			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+lettre);
 		} while (!(lettre.equals("o")) && !(lettre.equals("n")));
 		
