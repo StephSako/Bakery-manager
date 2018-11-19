@@ -104,9 +104,12 @@ public class NoteClient {
 		
 		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
 		produitDejaCommande(restaurant, newProduit);
+		
+		//on calcule sa note
+		calculPrix();
 	}
 	
-	private void calculPrix() {
+	public void calculPrix() {
 		// Calcul du prix total HT
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul du prix total HT : "+df.format(prixTotalHT));
@@ -125,9 +128,6 @@ public class NoteClient {
 	
 	public String afficherNoteAPayer() { //ca affiche le mauvais stock (??, a verfifier)
 		String noteToPrint = "";
-		// On calcule les prix HT et TTC, avec une potentielle remise
-		calculPrix();
-		
 		// On affiche la note a payer
 		noteToPrint += "\nVoici la note a payer : \n";
 		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
@@ -155,6 +155,8 @@ public class NoteClient {
 		
 		// On affiche la note
 		logger.info("OUTPUT", this.afficherNoteAPayer());
+		//ca affiche bien  la note MAIS CA LA RECALCULE AUSSI (note x2)
+		
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note est affichee");
 		
 		// On supprime la note dans la liste des notes actives de la caisse
