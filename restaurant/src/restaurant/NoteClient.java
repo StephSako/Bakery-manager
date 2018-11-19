@@ -132,6 +132,9 @@ public class NoteClient {
 		noteToPrint += "\nVoici la note a payer : \n";
 		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
 		
+		// Notification si remise
+		if (this.remise) noteToPrint += "Remise : "+valRemise*100+"%\n";
+		
 		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros\n";
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note est affichee");
 		return noteToPrint;
