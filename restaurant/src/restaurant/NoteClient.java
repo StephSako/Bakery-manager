@@ -18,6 +18,8 @@ public class NoteClient {
 	public static Saisie saisie = new Saisie();
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
+	public boolean remise;
+	public static double valRemise = 0.1;
 	
 	// CONSTRUCTEUR
 	
@@ -26,6 +28,7 @@ public class NoteClient {
 		this.prixTotalTTC = 0.0;
 		this.prixTotalHT = 0.0;
 		this.TVATotale = 0.0;
+		this.remise = false;
 	}
 	
 	// METHODES
@@ -102,15 +105,17 @@ public class NoteClient {
 	private void calculPrix() {
 		// Calcul du prix total HT
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
+		// Calcul de la remise, s'il y en a une
+		if (this.remise) this.prixTotalHT -= this.prixTotalHT*this.valRemise;
 		// Calcul du prix total TTC
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
 		// Calcul de la TVA totale encaissee
 		this.TVATotale = this.prixTotalHT * TauxTVA;
 	}
 	
-	public String afficherNoteAPayer() { //ca affiche le mauvais stock
+	public String afficherNoteAPayer() { //ca affiche le mauvais stock (??, a verfifier)
 		String noteToPrint = "";
-		// On calcule les prix HT et TTC
+		// On calcule les prix HT et TTC, avec une potentielle remise
 		calculPrix();
 		
 		// On affiche la note a payer
@@ -121,10 +126,6 @@ public class NoteClient {
 		return noteToPrint;
 	}
 	
-	public void remise() {
-		//TODO
-	}
-	
 	public void cloturerNoteClient(Restaurant restaurant) {
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
@@ -132,7 +133,7 @@ public class NoteClient {
 		
 		// On demande si le client dispose d'une remise de 10%
 		logger.info("input", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)");
-		if (sc.next().toLowerCase().equals("o")) this.remise();
+		this.remise = (sc.next().toLowerCase().equals("o"));
 		
 		// On affiche la note
 		logger.info("output", this.afficherNoteAPayer());
