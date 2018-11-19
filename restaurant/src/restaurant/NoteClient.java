@@ -34,7 +34,7 @@ public class NoteClient {
 		int j; boolean existe = false;
 		do {
 			j = 0;
-			nom = (sc.next()).trim();
+			nom = saisie.getSaisieString(sc, logger);
 			while(j < restaurant.stock.size()) {
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;

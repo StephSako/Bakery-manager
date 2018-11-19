@@ -33,7 +33,7 @@ public class Caisse {
 		stockRestaurant.stock.add(new ProduitStockFinis("Bagel", 2.5, 20));
 		stockRestaurant.stock.add(new ProduitStockFinis("Burger", 5.75, 10));
 		stockRestaurant.stock.add(new ProduitStockFinis("Smoothie", 1.25, 30));
-		stockRestaurant.stock.add(new ProduitStockInfinis("Cafe", 0.85)); // Pas de paramètres stock car le stock est illimité
+		stockRestaurant.stock.add(new ProduitStockInfinis("Cafe", 100)); // Pas de paramètres stock car le stock est illimité
 		
 		// Creation du LogFileWriter
 		LogFileWriter lfw = new LogFileWriter();

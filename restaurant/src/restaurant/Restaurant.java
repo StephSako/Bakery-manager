@@ -35,7 +35,7 @@ public class Restaurant {
 		do {
 			j = 0;
 			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
-			newClient = (sc.next()).trim();
+			newClient = saisie.getSaisieString(sc, logger);
 			while(j < notesClientsActives.size()) {
 				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
 					existe = true;
@@ -56,11 +56,11 @@ public class Restaurant {
 		
 		while (!(lettre.equals("o")) && !(lettre.equals("n"))) {
 			logger.error("OUTPUT", "Saisissez 'o' ou 'n' pour déterminer si le produit a un stock :");
-			lettre = (sc.next()).trim();
+			lettre = saisie.getSaisieString(sc, logger);
 		}
 		
 		logger.info("OUTPUT", "Nom du produit a ajouter :");
-		String nom = (sc.next()).trim();
+		String nom = saisie.getSaisieString(sc, logger);
 		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
 		
 		// On créé en le bon objet en fonction de son stock fini ou infini
@@ -82,7 +82,7 @@ public class Restaurant {
 	}
 	
 	public NoteClient ouvrirNote() {
-		String nomClientSearched = (sc.next()).trim();
+		String nomClientSearched = saisie.getSaisieString(sc, logger);
 		
 		int i = 0;
 		while(i < this.notesClientsActives.size()){
