@@ -40,4 +40,9 @@ public class Saisie {
 		}
 		return val;
 	}
+	
+	public String getSaisieString(Scanner sc, ConsoleLogger logger) {
+		String lettre = sc.next().trim();
+		return lettre.substring(0,1).toUpperCase() + lettre.substring(1).toLowerCase();
+	}
 }

@@ -18,7 +18,12 @@ public class NoteClient {
 	public static Saisie saisie = new Saisie();
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
+<<<<<<< HEAD
 	public LogFileWriter lfw = new LogFileWriter();
+=======
+	public boolean remise;
+	public static double valRemise = 0.1;
+>>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
 	
 	// CONSTRUCTEUR
 	
@@ -27,6 +32,7 @@ public class NoteClient {
 		this.prixTotalTTC = 0.0;
 		this.prixTotalHT = 0.0;
 		this.TVATotale = 0.0;
+		this.remise = false;
 	}
 	
 	// METHODES
@@ -35,8 +41,12 @@ public class NoteClient {
 		int j; boolean existe = false;
 		do {
 			j = 0;
+<<<<<<< HEAD
 			nom = (sc.next()).trim();
 			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nom);
+=======
+			nom = saisie.getSaisieString(sc, logger);
+>>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
 			while(j < restaurant.stock.size()) {
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;
@@ -106,8 +116,13 @@ public class NoteClient {
 	private void calculPrix() {
 		// Calcul du prix total HT
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
+<<<<<<< HEAD
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul du prix total HT : "+df.format(prixTotalHT));
 
+=======
+		// Calcul de la remise, s'il y en a une
+		if (this.remise) this.prixTotalHT -= this.prixTotalHT*this.valRemise;
+>>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
 		// Calcul du prix total TTC
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul du prix total TTC : "+df.format(prixTotalTTC));
@@ -116,9 +131,9 @@ public class NoteClient {
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Calcul de la TVA totale : "+df.format(TVATotale));
 	}
 	
-	public String afficherNoteAPayer() { //ca affiche le mauvais stock
+	public String afficherNoteAPayer() { //ca affiche le mauvais stock (??, a verfifier)
 		String noteToPrint = "";
-		// On calcule les prix HT et TTC
+		// On calcule les prix HT et TTC, avec une potentielle remise
 		calculPrix();
 		
 		// On affiche la note a payer
@@ -130,10 +145,6 @@ public class NoteClient {
 		return noteToPrint;
 	}
 	
-	public void remise() {
-		//TODO
-	}
-	
 	public void cloturerNoteClient(Restaurant restaurant) {
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
@@ -142,10 +153,15 @@ public class NoteClient {
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables");
 		
 		// On demande si le client dispose d'une remise de 10%
+<<<<<<< HEAD
 		logger.info("INPUT", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)");
 		String remise = sc.next();
 		if (remise.toLowerCase().equals("o")) this.remise();
 		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+remise);
+=======
+		logger.info("input", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)");
+		this.remise = (sc.next().toLowerCase().equals("o"));
+>>>>>>> 67ef01b481ec7ffe95e4e21bb829093f8f2cf7cd
 		
 		// On affiche la note
 		logger.info("OUTPUT", this.afficherNoteAPayer());
