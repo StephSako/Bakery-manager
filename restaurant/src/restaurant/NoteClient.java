@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
 
-public class NoteClient {
+public class NoteClient implements NoteClientInterface{
 
 	// CHAMPS
 	

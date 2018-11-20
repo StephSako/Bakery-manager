@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
 
-public class Restaurant {
+public class Restaurant implements RestaurantInterface {
 	
 	// CHAMPS
 	
