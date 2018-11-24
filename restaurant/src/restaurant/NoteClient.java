@@ -1,7 +1,6 @@
 package restaurant;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import java.util.Scanner;
 import logger.*;
 
 public class NoteClient implements NoteClientInterface{
@@ -14,7 +13,6 @@ public class NoteClient implements NoteClientInterface{
 	public static double TauxTVA = 0.1;
 	DecimalFormat df = new DecimalFormat("0.00");
 	public static Saisie saisie = new Saisie();
-	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
 	public boolean remise;
 	public static double valRemise = 0.1;
@@ -30,7 +28,7 @@ public class NoteClient implements NoteClientInterface{
 	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
 		int j; boolean existe = false;
 		do {
-			j = 0; nom = saisie.getSaisieString(sc, logger);
+			j = 0; nom = saisie.getSaisieString();
 			while(j < restaurant.stock.size()) {
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;
@@ -81,7 +79,7 @@ public class NoteClient implements NoteClientInterface{
 		Produit newProduit = existenceProduitEtAjout(restaurant, nom, prix, stock);
 		
 		//on initialise le stock (nb de produits commandes tapes par l'utilisateur)
-		newProduit.stock = saisie.getSaisieInt(sc, logger, "Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
+		newProduit.stock = saisie.getSaisieInt("Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
 		enleverProduitDuStock(restaurant, newProduit); // On retire le produit du stock du restaurant
 		
 		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
@@ -120,7 +118,7 @@ public class NoteClient implements NoteClientInterface{
 		logger.info("PROGRAM", "Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables", false);
 		
 		logger.info("INPUT", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)", true);
-		String valider = saisie.getSaisieString(sc, logger);
+		String valider = saisie.getSaisieString();
 		this.remise = (valider.toLowerCase().equals("o"));
 		logger.info("OUTPUT", this.afficherNoteAPayer(), true);// On affiche la note
 		

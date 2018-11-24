@@ -25,7 +25,7 @@ public class Restaurant implements RestaurantInterface {
 		int j; boolean existe = false;
 		do { j = 0;
 			logger.info("OUTPUT", "Saisissez le nom du client a creer : ", true);
-			newClient = saisie.getSaisieString(sc, logger);
+			newClient = saisie.getSaisieString();
 			while(j < notesClientsActives.size()) {
 				if(notesClientsActives.get(j).nomClient.equals(newClient)) { existe = true; break; }
 				else existe = false;
@@ -44,11 +44,11 @@ public class Restaurant implements RestaurantInterface {
 		} while (!(lettre.equals("o")) && !(lettre.equals("n")));
 		
 		logger.info("OUTPUT", "Nom du produit a ajouter :", true);
-		String nom = saisie.getSaisieString(sc, logger);
-		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
+		String nom = saisie.getSaisieString();
+		double prix = saisie.getSaisieDouble("Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
 		
 		if (lettre.equals("o")){ // On cree le bon objet en fonction de son stock fini ou infini
-			int stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
+			int stock = saisie.getSaisieInt("Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
 			this.stock.add(new ProduitStockFinis(nom, prix, stock));
 		}
 		else this.stock.add(new ProduitStockInfinis(nom, prix));
@@ -67,7 +67,7 @@ public class Restaurant implements RestaurantInterface {
 	}
 	
 	public NoteClient ouvrirNote() {
-		String nomClientSearched = saisie.getSaisieString(sc, logger); int i = 0;
+		String nomClientSearched = saisie.getSaisieString(); int i = 0;
 		while(i < this.notesClientsActives.size()){
 			if (this.notesClientsActives.get(i).nomClient.equals(nomClientSearched)) {
 				logger.info("PROGRAM", "La note "+nomClientSearched+" est recuperee", false);

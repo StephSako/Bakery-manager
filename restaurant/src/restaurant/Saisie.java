@@ -7,42 +7,43 @@ import logger.*;
 public class Saisie {
 	
 	public ConsoleLogger logger = new ConsoleLogger();
+	public Scanner sc = new Scanner(System.in);
 	
 	public Saisie() {}	
 	
-	public int getSaisieInt(Scanner sc, ConsoleLogger logger, String question, String reponse) {
+	public int getSaisieInt(String question, String reponse) {
 		int val = 0;		
 		while(val <= 0) {
 			try {
-				logger.info("OUTPUT", question, true);
-				val = sc.nextInt();
+				this.logger.info("OUTPUT", question, true);
+				val = this.sc.nextInt();
 			} catch (InputMismatchException ex) {
-				logger.error("PROGRAM", reponse, true);
-				sc.next();
+				this.logger.error("PROGRAM", reponse, true);
+				this.sc.next();
 			}
 		}
-		logger.info("INPUT", "L'utilisateur a tape " + val, false);
+		this.logger.info("INPUT", "L'utilisateur a tape " + val, false);
 		return val;
 	}
 	
-	public double getSaisieDouble(Scanner sc, ConsoleLogger logger, String question, String reponse) {
+	public double getSaisieDouble(String question, String reponse) {
 		double val = 0.0;
 		while(val <= 0) {
 			try {
-				logger.info("OUTPUT", question, true);
-				val = sc.nextDouble();
+				this.logger.info("OUTPUT", question, true);
+				val = this.sc.nextDouble();
 			} catch (InputMismatchException ex) {
-				logger.error("PROGRAM", reponse, true);
-				sc.next();
+				this.logger.error("PROGRAM", reponse, true);
+				this.sc.next();
 			}
 		}
-		logger.info("INPUT", "L'utilisateur a tape " + val, false);
+		this.logger.info("INPUT", "L'utilisateur a tape " + val, false);
 		return val;
 	}
 	
-	public String getSaisieString(Scanner sc, ConsoleLogger logger) {
-		String lettre = sc.next().trim();
-		logger.info("INPUT", "L'utilisateur a tape " + lettre, false);
+	public String getSaisieString() {
+		String lettre = this.sc.next().trim();
+		this.logger.info("INPUT", "L'utilisateur a tape " + lettre, false);
 		return lettre.substring(0,1).toUpperCase() + lettre.substring(1).toLowerCase();
 	}
 }
