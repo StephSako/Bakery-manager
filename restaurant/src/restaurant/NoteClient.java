@@ -142,7 +142,7 @@ public class NoteClient implements NoteClientInterface{
 	
 	public void cloturerNoteClient(Restaurant restaurant) {
 		// On ajoute le montant total et la TVA encaissee dans les champs du restaurant
-		restaurant.ajoutertotalTVAfacturee(this.TVATotale);
+		restaurant.ajoutertotalTVAFacturee(this.TVATotale);
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Ajout de "+TVATotale+" (TVA), donnees comptables");
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables");

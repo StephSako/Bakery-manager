@@ -14,7 +14,7 @@ public class Operation {
 	}
 	
 	public void casC (Restaurant stockRestaurant) {
-		stockRestaurant.existenceClientEtAjout();
+		stockRestaurant.existenceClientEtAjout("");
 	}
 	
 	public void casD (Logger logger, Restaurant stockRestaurant) {

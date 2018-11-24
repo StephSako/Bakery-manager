@@ -3,7 +3,7 @@ package restaurant;
 public interface RestaurantInterface {
 
 	
-	public void existenceClientEtAjout();
+	public void existenceClientEtAjout(String newClient);
 	
 	public void ajouterProduitStockRestaurant();
 
@@ -15,7 +15,7 @@ public interface RestaurantInterface {
 	
 	public void ajouterRentreeArgent(double rentreeArgent);
 	
-	public void ajoutertotalTVAfacturee(double totalTVAfacturee);
+	public void ajoutertotalTVAFacturee(double totalTVAfacturee);
 	
 	public String donneesComptable();
 }

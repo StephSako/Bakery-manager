@@ -31,8 +31,8 @@ public class Restaurant implements RestaurantInterface {
 	
 	// METHODES
 	
-	public void existenceClientEtAjout() {
-		String newClient; int j; boolean existe = false;
+	public void existenceClientEtAjout(String newClient) {
+		int j; boolean existe = false;
 		do {
 			j = 0;
 			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
@@ -40,7 +40,7 @@ public class Restaurant implements RestaurantInterface {
 			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+newClient);
 			while(j < notesClientsActives.size()) {
 				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
-					existe = true;
+					existe = true; break;
 				} else { existe = false; }
 				j++;
 			}
@@ -112,7 +112,7 @@ public class Restaurant implements RestaurantInterface {
 		for (NoteClient notes : this.notesClientsActives) {
 			notesToPrint += "ID Client : " + notes.nomClient;
 			notesToPrint += notes.afficherNoteAPayer()+"\n";
-		}		
+		}	
 		if (notesToPrint == "") {
 			lfw.ecrireFinLogFile("PROGRAM", "INFO", "Aucune note trouvee");
 			return "Il n'y a aucune note en cours.";
@@ -120,8 +120,15 @@ public class Restaurant implements RestaurantInterface {
 		return notesToPrint;
 	}
 	
-	public void ajouterRentreeArgent(double rentreeArgent){ this.rentreeArgent += rentreeArgent;}
-	public void ajoutertotalTVAfacturee(double totalTVAfacturee){ this.totalTVAfacturee += totalTVAfacturee;}
+	public void ajouterRentreeArgent(double rentreeArgent){ 
+		if(rentreeArgent >= 0) this.rentreeArgent += rentreeArgent;
+		else {logger.error("PROGRAM", "Le chiffre doit être positif");}
+	}
+	
+	public void ajoutertotalTVAFacturee(double totalTVAfacturee){ 
+		if(totalTVAfacturee >= 0) this.totalTVAfacturee += totalTVAfacturee;
+		else {logger.error("PROGRAM", "Le chiffre doit être positif");}
+	}
 	
 	public String donneesComptable() {
 		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Les donnees comptables sont affichees");

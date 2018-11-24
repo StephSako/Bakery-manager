@@ -1,2 +1,2 @@
-java -cp "testframework/bin" RunTest test.RestaurantTest test.NoteClientTest
+java -cp "testframework/bin:restaurant/bin:logger/bin" RunTest test.RunTest
 
