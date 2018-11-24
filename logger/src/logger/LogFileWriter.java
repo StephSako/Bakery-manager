@@ -6,12 +6,7 @@ import java.time.LocalDateTime;
 
 public class LogFileWriter {
 	
-	// CONSTRUCTEUR
-	
 	public LogFileWriter() {}
-	
-	
-	// FONCTIONS
 	
 	public void ecrireFinLogFile(String categorie, String level, String message) {
 		try	{			

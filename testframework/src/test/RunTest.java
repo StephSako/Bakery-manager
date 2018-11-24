@@ -1,8 +1,9 @@
 package test;
 
-import logger.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import logger.*;
 
 public class RunTest {
 	
@@ -15,7 +16,7 @@ public class RunTest {
 		try {
 		    Class<?> clazz = Class.forName(className);
 		} catch (ClassNotFoundException e) {
-		    logger.error("PROGRAM", "La classe n'a pas été trouvée");
+		    logger.error("PROGRAM", "La classe n'a pas ï¿½tï¿½ trouvï¿½e");
 		}
 		
 		//liste les methodes d'une classe
@@ -24,12 +25,12 @@ public class RunTest {
 		    System.out.println(method.getName());
 		}
 		
-		//exécute le code pointé par un objet Method
+		//exï¿½cute le code pointï¿½ par un objet Method
 		Object instance = null;
 		try {
 		    instance = uneClasse.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {
-		    logger.error("PROGRAM", "Erreur lors de la création d'instance d'une classe");
+		    logger.error("PROGRAM", "Erreur lors de la crï¿½ation d'instance d'une classe");
 		}
 
 		Method method = uneClasse.getDeclaredMethod("", uneClasse);

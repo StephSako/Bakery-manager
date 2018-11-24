@@ -9,7 +9,6 @@ public class Caisse {
 	public ConsoleLogger logger = new ConsoleLogger();
 	public String lettre;
 	public Operation operation = new Operation();
-	public LogFileWriter lfw = new LogFileWriter();
 	// Creation du restaurant
 	Restaurant stockRestaurant = new Restaurant("StudioBagel");
 	
@@ -34,21 +33,15 @@ public class Caisse {
 		stockRestaurant.stock.add(new ProduitStockFinis("Burger", 5.75, 10));
 		stockRestaurant.stock.add(new ProduitStockFinis("Smoothie", 1.25, 30));
 		stockRestaurant.stock.add(new ProduitStockInfinis("Cafe", 0.5)); // Pas de paramètres stock car le stock est illimité
-		
-		// Creation du LogFileWriter
-		
-		lfw.ecrireFinLogFile("OUTPUT", "INFO", "Initialisation ...");
-		
-		logger.info("OUTPUT", "-------------------------------------------------------------\nBienvenue sur l'interface de la caisse du restaurant Bagel !\n-------------------------------------------------------------\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n");
+		logger.info("OUTPUT", "-------------------------------------------------------------\nBienvenue sur l'interface de la caisse du restaurant Bagel !\n-------------------------------------------------------------\nQue voulez-vous faire ? ('h' pour afficher l'aide)\n", true);
 		return stockRestaurant;
 	}
 	
 	public void journee(Restaurant stockRestaurant) {
 		lettre = (sc.next()).trim();
-		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape la lettre '"+lettre+"'.");
 		if (commands.get(lettre) != null) commands.get(lettre).run();
-		else logger.error("PROGRAM", "Commande inconnue. Tappez 'help' pour l'aide");
-		logger.info("OUTPUT", "Que voulez-vous faire ? ('h' pour afficher l'aide)\n");
+		else logger.error("PROGRAM", "Commande inconnue. Tappez 'help' pour l'aide", true);
+		logger.info("OUTPUT", "Que voulez-vous faire ? ('h' pour afficher l'aide)\n", true);
 	}	
 	public void finDeJournee() {
 		stockRestaurant = debutDeJournee();

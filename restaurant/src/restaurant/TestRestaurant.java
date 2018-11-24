@@ -23,7 +23,7 @@ public class TestRestaurant {
 		//newClient = "abcdef"
 		//newclient = "123456"
 		
-		//resultat : état de la liste
+		//resultat : ï¿½tat de la liste
 
 		fail("Not yet implemented");
 	}

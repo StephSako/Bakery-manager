@@ -5,23 +5,15 @@ import java.util.Scanner;
 import logger.*;
 
 public class Restaurant implements RestaurantInterface {
-	
-	// CHAMPS
-	
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
-	// Liste des produits en stock
-	public LinkedList<Produit> stock = new LinkedList<Produit>();
-	// Liste des notes de clients actives/ouvertes/creees
-	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>();
+	public LinkedList<Produit> stock = new LinkedList<Produit>(); // Liste des produits en stock
+	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>(); // Liste des notes de clients actives/ouvertes/creees
 	public String nom;
 	public double rentreeArgent;
 	public double totalTVAfacturee;
 	public DecimalFormat df = new DecimalFormat("0.00");
 	public Saisie saisie = new Saisie();
-	public LogFileWriter lfw = new LogFileWriter();
-	
-	// CONSTRUCTEUR
 	
 	public Restaurant(String nom) {
 		this.nom = nom;
@@ -29,56 +21,38 @@ public class Restaurant implements RestaurantInterface {
 		this.rentreeArgent = 0.0;
 	}
 	
-	// METHODES
-	
 	public void existenceClientEtAjout(String newClient) {
 		int j; boolean existe = false;
-		do {
-			j = 0;
-			logger.info("OUTPUT", "Saisissez le nom du client a creer : ");
+		do { j = 0;
+			logger.info("OUTPUT", "Saisissez le nom du client a creer : ", true);
 			newClient = saisie.getSaisieString(sc, logger);
-			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+newClient);
 			while(j < notesClientsActives.size()) {
-				if(notesClientsActives.get(j).nomClient.equals(newClient)) {
-					existe = true; break;
-				} else { existe = false; }
+				if(notesClientsActives.get(j).nomClient.equals(newClient)) { existe = true; break; }
+				else existe = false;
 				j++;
-			}
-			if(existe) {
-				logger.info("OUTPUT", "Ce client existe deja !");
-				lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le client "+newClient+" existe deja");
-			}
+			} if(existe) logger.info("OUTPUT", "Ce client existe deja !", true);
 		} while(newClient.equals("") || existe);
 		
-		// On ajoute la nouvelle note dans la liste des notes de clients encore actives
-		notesClientsActives.add(new NoteClient(newClient));
-		logger.info("PROGRAM", "Le client '" + newClient + "' a bien ete cree.");
-		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le client "+newClient+" est cree");
+		notesClientsActives.add(new NoteClient(newClient)); // On ajoute la nouvelle note dans la liste des notes de clients encore actives
+		logger.info("PROGRAM", "Le client '" + newClient + "' a bien ete cree.", true);
 	}
 	
 	public void ajouterProduitStockRestaurant(){
 		String lettre;
-		do {
-			logger.info("OUTPUT", "Le produit a-t-il un stock fini ? 'o'/'n'");
+		do { logger.info("OUTPUT", "Le produit a-t-il un stock fini ? 'o'/'n'", true);
 			lettre = (sc.next()).trim();
-			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+lettre);
 		} while (!(lettre.equals("o")) && !(lettre.equals("n")));
 		
-		logger.info("OUTPUT", "Nom du produit a ajouter :");
+		logger.info("OUTPUT", "Nom du produit a ajouter :", true);
 		String nom = saisie.getSaisieString(sc, logger);
-		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nom);
-		
 		double prix = saisie.getSaisieDouble(sc, logger, "Saisir un prix : ", "Prix incorrect ! Utilisez la virgule pour les centimes");
-		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+prix);
 		
-		// On cree le bon objet en fonction de son stock fini ou infini
-		if (lettre.equals("o")){
+		if (lettre.equals("o")){ // On cree le bon objet en fonction de son stock fini ou infini
 			int stock = saisie.getSaisieInt(sc, logger, "Saisir un montant a ajouter dans le stock : ", "Montant incorrect ! Entrez un entier");
-			lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+stock);
 			this.stock.add(new ProduitStockFinis(nom, prix, stock));
 		}
 		else this.stock.add(new ProduitStockInfinis(nom, prix));
-		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le produit "+nom+" a ete ajoute au stock du restaurant");
+		logger.info("OUTPUT", "Le produit "+nom+" a ete ajoute au stock du restaurant", false);
 	}
 	
 	public String afficherStock() {
@@ -88,50 +62,41 @@ public class Restaurant implements RestaurantInterface {
 			if (produit instanceof ProduitStockInfinis) stockToPrint += "stock illimite\n";
 			else stockToPrint += produit.stock + " unites\n";
 		}
-	lfw.ecrireFinLogFile("PROGRAM", "INFO", "Le stock du restaurant est affiche");
+		logger.info("PROGRAM", "Le stock du restaurant est affiche", false);
 		return stockToPrint;
 	}
 	
 	public NoteClient ouvrirNote() {
-		String nomClientSearched = saisie.getSaisieString(sc, logger);
-		lfw.ecrireFinLogFile("INPUT", "INFO", "L'utilisateur a tape "+nomClientSearched);
-		
-		int i = 0;
+		String nomClientSearched = saisie.getSaisieString(sc, logger); int i = 0;
 		while(i < this.notesClientsActives.size()){
 			if (this.notesClientsActives.get(i).nomClient.equals(nomClientSearched)) {
-				lfw.ecrireFinLogFile("PROGRAM", "INFO", "La note "+nomClientSearched+" est recuperee");
+				logger.info("PROGRAM", "La note "+nomClientSearched+" est recuperee", false);
 				return this.notesClientsActives.get(i);
-			}
-			i++;
-		}
-		return null;
+			} i++;
+		} return null;
 	}
 	
 	public String afficherNotes() {
 		String notesToPrint = "";
-		for (NoteClient notes : this.notesClientsActives) {
-			notesToPrint += "ID Client : " + notes.nomClient;
-			notesToPrint += notes.afficherNoteAPayer()+"\n";
-		}	
+		for (NoteClient notes : this.notesClientsActives) notesToPrint += "ID Client : " + notes.nomClient + notes.afficherNoteAPayer()+"\n";
 		if (notesToPrint == "") {
-			lfw.ecrireFinLogFile("PROGRAM", "INFO", "Aucune note trouvee");
+			logger.info("PROGRAM", "Aucune note trouvee", true);
 			return "Il n'y a aucune note en cours.";
-		}
-		return notesToPrint;
+		} return notesToPrint;
 	}
 	
 	public void ajouterRentreeArgent(double rentreeArgent){ 
 		if(rentreeArgent >= 0) this.rentreeArgent += rentreeArgent;
-		else {logger.error("PROGRAM", "Le chiffre doit être positif");}
+		else {logger.error("PROGRAM", "Le chiffre doit etre positif", true);}
 	}
 	
 	public void ajoutertotalTVAFacturee(double totalTVAfacturee){ 
 		if(totalTVAfacturee >= 0) this.totalTVAfacturee += totalTVAfacturee;
-		else {logger.error("PROGRAM", "Le chiffre doit être positif");}
+		else {logger.error("PROGRAM", "Le chiffre doit etre positif", true);}
 	}
 	
 	public String donneesComptable() {
-		lfw.ecrireFinLogFile("PROGRAM", "INFO", "Les donnees comptables sont affichees");
+		logger.info("PROGRAM", "Les donnees comptables sont affichees", false);
 		return "Total des rentrees d'argent : "+df.format(rentreeArgent)+" Euros\nTotal de la TVA facturee : " + df.format(totalTVAfacturee) + " Euros.\n";
 	}
 }
