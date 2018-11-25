@@ -10,15 +10,13 @@ public class Restaurant implements RestaurantInterface {
 	public LinkedList<Produit> stock = new LinkedList<Produit>(); // Liste des produits en stock
 	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>(); // Liste des notes de clients actives/ouvertes/creees
 	public String nom;
-	public double rentreeArgent;
-	public double totalTVAfacturee;
+	public double rentreeArgent, totalTVAfacturee;
 	public DecimalFormat df = new DecimalFormat("0.00");
 	public Saisie saisie = new Saisie();
 	
 	public Restaurant(String nom) {
 		this.nom = nom;
-		this.totalTVAfacturee = 0.0;
-		this.rentreeArgent = 0.0;
+		this.rentreeArgent = this.totalTVAfacturee = 0.0;
 	}
 	
 	public void existenceClientEtAjout(String newClient) {

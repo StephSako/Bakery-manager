@@ -7,28 +7,22 @@ public class NoteClient implements NoteClientInterface{
 
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public String nomClient;
-	public double prixTotalHT;
-	public double prixTotalTTC;
-	public double TVATotale;
-	public static double TauxTVA = 0.1;
+	public double prixTotalHT, prixTotalTTC, TVATotale;
 	DecimalFormat df = new DecimalFormat("0.00");
 	public static Saisie saisie = new Saisie();
 	public ConsoleLogger logger = new ConsoleLogger();
 	public boolean remise;
-	public static double valRemise = 0.1;
+	public static double valRemise = 0.1, TauxTVA = 0.1;
 	
 	public NoteClient(String nomClient) {
 		this.nomClient = nomClient;
-		this.prixTotalTTC = 0.0;
-		this.prixTotalHT = 0.0;
-		this.TVATotale = 0.0;
+		this.TVATotale = this.prixTotalHT = this.prixTotalTTC = 0.0;
 		this.remise = false;
 	}
 	
 	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
 		int j; boolean existe = false;
-		do {
-			j = 0; nom = saisie.getSaisieString();
+		do { j = 0; nom = saisie.getSaisieString();
 			while(j < restaurant.stock.size()) {
 				if (restaurant.stock.get(j).nom.equals(nom)) {
 					prix = restaurant.stock.get(j).prix;
@@ -36,8 +30,7 @@ public class NoteClient implements NoteClientInterface{
 					existe = true;
 					logger.error("PROGRAM", "Le produit " + nom + " existe dans le stock", false);
 				} j++;
-			}
-			if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\nRetapez le produit :", true);
+			} if (!existe) logger.error("PROGRAM", "Ce produit n'existe pas ...\nRetapez le produit :", true);
 		} while (nom.equals("") || !existe);
 		return new ProduitStockFinis(nom, prix, stock);
 	}
@@ -74,30 +67,19 @@ public class NoteClient implements NoteClientInterface{
 	public void ajouterProduitNoteClient(Restaurant restaurant) {
 		String nom = ""; double prix = 0; int stock = 0;
 		logger.info("OUTPUT", restaurant.afficherStock(), true);
-
-		// On verifie que le produit existe bien dans le stock et on cree le produit avec le bon prix et le bon nom
-		Produit newProduit = existenceProduitEtAjout(restaurant, nom, prix, stock);
-		
-		//on initialise le stock (nb de produits commandes tapes par l'utilisateur)
-		newProduit.stock = saisie.getSaisieInt("Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier");
+		Produit newProduit = existenceProduitEtAjout(restaurant, nom, prix, stock); // Verifie que le produit existe et on cree le produit
+		newProduit.stock = saisie.getSaisieInt("Nombre de " + newProduit.nom + " a ajouter au panier : ", "Montant incorrect ! Entrez un entier"); // On initialise le stock
 		enleverProduitDuStock(restaurant, newProduit); // On retire le produit du stock du restaurant
-		
-		// On ajoute le produit au panier du client s'il n'en a pas deja commande, sinon on additionne son stock dans le panier
-		produitDejaCommande(restaurant, newProduit);
+		produitDejaCommande(restaurant, newProduit); // On ajoute le produit au panier du client sinon on l'additionne
 		calculPrix(); // On calcule sa note
 	}
 	
 	public void calculPrix() {
-		// Calcul du prix total HT
-		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock);
-		// Calcul de la remise, s'il y en a une
-		if (this.remise) this.prixTotalHT -= this.prixTotalHT*valRemise;		
-		// Calcul du prix total TTC
-		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA;
-		// Calcul de la TVA totale encaissee
-		this.TVATotale = this.prixTotalHT * TauxTVA;
-		logger.info("PROGRAM", "Calcul du prix total HT : " + df.format(prixTotalHT) +
-		"\nCalcul de la TVA totale : "+df.format(TVATotale)+"\nCalcul du prix total TTC : "+df.format(prixTotalTTC), false);
+		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock); // Calcul du prix total HT
+		if (this.remise) this.prixTotalHT -= this.prixTotalHT*valRemise; // Calcul de la remise, s'il y en a une
+		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA; // Calcul du prix total TTC
+		this.TVATotale = this.prixTotalHT * TauxTVA; // Calcul de la TVA totale encaissee
+		logger.info("PROGRAM", "Calcul du prix total HT : " + df.format(prixTotalHT) + "\nCalcul de la TVA totale : "+df.format(TVATotale)+"\nCalcul du prix total TTC : "+df.format(prixTotalTTC), false);
 	}
 	
 	public String afficherNoteAPayer() {
@@ -105,7 +87,6 @@ public class NoteClient implements NoteClientInterface{
 		noteToPrint += "\nVoici la note a payer : \n"; // On affiche la note a payer
 		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
 		if (this.remise) noteToPrint += "Remise : "+valRemise*100+"%\n"; // Notification si remise
-		
 		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros\n";
 		logger.info("PROGRAM", "La note est affichee", false);
 		return noteToPrint;
@@ -116,13 +97,10 @@ public class NoteClient implements NoteClientInterface{
 		logger.info("PROGRAM", "Ajout de "+TVATotale+" (TVA), donnees comptables", false);
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
 		logger.info("PROGRAM", "Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables", false);
-		
 		logger.info("INPUT", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)", true);
-		String valider = saisie.getSaisieString();
+		String valider = saisie.getSaisieString(); int h = 0;
 		this.remise = (valider.toLowerCase().equals("o"));
 		logger.info("OUTPUT", this.afficherNoteAPayer(), true);// On affiche la note
-		
-		int h = 0;
 		while(h < restaurant.notesClientsActives.size()) {
 			if (restaurant.notesClientsActives.get(h).nomClient == this.nomClient) {
 				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
