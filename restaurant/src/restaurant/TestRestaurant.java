@@ -12,18 +12,18 @@ public class TestRestaurant {
 
 	@Test
 	public final void testExistenceClientEtAjout() {
-			//liste
+		//liste
 		//liste vide
 		//liste remplie, le client n'existe pas
 		//liste remplie, le client existe
 		
-			//string entree au clavier
+		//string entree au clavier
 		//newClient = ""
 		//newClient = null
 		//newClient = "abcdef"
 		//newclient = "123456"
 		
-		//resultat : �tat de la liste
+		//resultat : etat de la liste
 
 		fail("Not yet implemented");
 	}
