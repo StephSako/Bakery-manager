@@ -1,10 +1,6 @@
-package restaurant;
-import java.text.DecimalFormat;
-import java.util.LinkedList;
-import logger.*;
+package restaurant; import java.text.DecimalFormat; import java.util.LinkedList; import logger.*;
 
 public class NoteClient implements NoteClientInterface{
-
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public String nomClient;
 	public double prixTotalHT, prixTotalTTC, TVATotale;
@@ -19,7 +15,6 @@ public class NoteClient implements NoteClientInterface{
 		this.TVATotale = this.prixTotalHT = this.prixTotalTTC = 0.0;
 		this.remise = false;
 	}
-	
 	public Produit existenceProduitEtAjout(Restaurant restaurant, String nom, double prix, int stock) {
 		int j; boolean existe = false;
 		do { j = 0; nom = saisie.getSaisieString();
@@ -34,7 +29,6 @@ public class NoteClient implements NoteClientInterface{
 		} while (nom.equals("") || !existe);
 		return new ProduitStockFinis(nom, prix, stock);
 	}
-	
 	public void enleverProduitDuStock(Restaurant restaurant, Produit newProduit) {
 		for (Produit produitRestau : restaurant.stock) {
 			if (produitRestau.nom == newProduit.nom && !(produitRestau instanceof ProduitStockInfinis)) {
@@ -50,7 +44,6 @@ public class NoteClient implements NoteClientInterface{
 			}
 		} logger.info("PROGRAM", "\nMerci ! La commande a ete enregistree.", false);
 	}
-	
 	public void produitDejaCommande(Restaurant restaurant, Produit newProduit) {
 		int m = 0; boolean alreadyCommanded = false;
 		while(m < panier.size()) {
@@ -63,7 +56,6 @@ public class NoteClient implements NoteClientInterface{
 		} if (!alreadyCommanded) this.panier.add(newProduit);
 		logger.info("PROGRAM", "Le produit "+newProduit.nom+" a ete ajoute au panier", false);
 	}
-	
 	public void ajouterProduitNoteClient(Restaurant restaurant) {
 		String nom = ""; double prix = 0; int stock = 0;
 		logger.info("OUTPUT", restaurant.afficherStock(), true);
@@ -73,7 +65,6 @@ public class NoteClient implements NoteClientInterface{
 		produitDejaCommande(restaurant, newProduit); // On ajoute le produit au panier du client sinon on l'additionne
 		calculPrix(); // On calcule sa note
 	}
-	
 	public void calculPrix() {
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock); // Calcul du prix total HT
 		if (this.remise) this.prixTotalHT -= this.prixTotalHT*valRemise; // Calcul de la remise, s'il y en a une
@@ -81,7 +72,6 @@ public class NoteClient implements NoteClientInterface{
 		this.TVATotale = this.prixTotalHT * TauxTVA; // Calcul de la TVA totale encaissee
 		logger.info("PROGRAM", "Calcul du prix total HT : " + df.format(prixTotalHT) + "\nCalcul de la TVA totale : "+df.format(TVATotale)+"\nCalcul du prix total TTC : "+df.format(prixTotalTTC), false);
 	}
-	
 	public String afficherNoteAPayer() {
 		String noteToPrint = "";
 		noteToPrint += "\nVoici la note a payer : \n"; // On affiche la note a payer
@@ -91,7 +81,6 @@ public class NoteClient implements NoteClientInterface{
 		logger.info("PROGRAM", "La note est affichee", false);
 		return noteToPrint;
 	}
-	
 	public void cloturerNoteClient(Restaurant restaurant) {
 		restaurant.ajoutertotalTVAFacturee(this.TVATotale); // On ajoute le montant total et la TVA encaissee dans les champs du restaurant
 		logger.info("PROGRAM", "Ajout de "+TVATotale+" (TVA), donnees comptables", false);
@@ -104,8 +93,7 @@ public class NoteClient implements NoteClientInterface{
 		while(h < restaurant.notesClientsActives.size()) {
 			if (restaurant.notesClientsActives.get(h).nomClient == this.nomClient) {
 				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
-				logger.info("PROGRAM", "La note "+nomClient+" n'est plus active", false);
-				break;
+				logger.info("PROGRAM", "La note "+nomClient+" n'est plus active", false); break;
 			} h++;
 		}	
 	}
