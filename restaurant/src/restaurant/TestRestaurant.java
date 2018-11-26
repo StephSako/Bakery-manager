@@ -157,5 +157,4 @@ public class TestRestaurant {
 		resultat = "Total des rentrees d'argent : "+df.format(argent)+" Euros\nTotal de la TVA facturee : " + df.format(tva) + " Euros.\n";
 		assertTrue("argent et tva negatifs", restaurant.donneesComptable() == resultat);
 	}
-
 }

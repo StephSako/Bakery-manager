@@ -1,10 +1,7 @@
-package restaurant;
-
-import static org.junit.Assert.*;
+package restaurant; import static org.junit.Assert.*;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-
 import org.junit.jupiter.api.Test;
 
 public class TestNoteClient {
@@ -24,8 +21,7 @@ public class TestNoteClient {
 			if(panier.get(j).nom.equals(nom)) { existe = true; break; }
 			else existe = false;
 			j++;
-		}
-		assertFalse("Le produit existe deja", existe);
+		} assertFalse("Le produit existe deja", existe);
 	}
 
 	@Test
@@ -48,7 +44,6 @@ public class TestNoteClient {
 
 	@Test
 	public final void testProduitDejaCommande() {
-
 		int i = 0; Produit produitATrouver = new ProduitStockFinis("Glace", 2.5, 10);
 		
 		note.produitDejaCommande(restaurant, produitATrouver);
@@ -65,19 +60,15 @@ public class TestNoteClient {
 		Produit newProduit = note.existenceProduitEtAjout(restaurant, "B", 1, 1);
 		noteRecovered.enleverProduitDuStock(restaurant, newProduit);
 		noteRecovered.produitDejaCommande(restaurant, newProduit);
-		
 		note.ajouterProduitNoteClient(restaurant);
 		assertEquals(noteRecovered, note);
 	}
 
 	@Test
 	public final void testCalculPrix() {
-		double HT = 15; double TTC = 0; double TVA = 0.1;
-		TTC = HT * TVA;
-		
+		double HT = 15; double TVA = 0.1; double TTC = HT * TVA;
 		Produit produit = new ProduitStockFinis("Gateau", 15, 1);
 		panier.add(produit);
-		
 		note.calculPrix();
 		assertEquals(HT, note.prixTotalHT, 0.1);
 		assertEquals(TTC, note.prixTotalTTC, 0.1);
@@ -91,7 +82,6 @@ public class TestNoteClient {
 		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
 		if (remise) noteToPrint += "Remise : "+valRemise*100+"%\n";
 		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros\n";
-		
 		note.afficherNoteAPayer();
 		assertEquals(noteToPrint, note);
 	}
@@ -100,7 +90,6 @@ public class TestNoteClient {
 	public final void testCloturerNoteClient() {
 		int i = 0; boolean toujoursla = false;
 		NoteClient noteNotClosedYet = new NoteClient("Choucroute");
-		
 		noteNotClosedYet.cloturerNoteClient(restaurant);	
 		while(i < restaurant.notesClientsActives.size()) {
 			if (restaurant.notesClientsActives.get(i).nomClient == "Choucroute") {
@@ -108,5 +97,4 @@ public class TestNoteClient {
 			} i++;
 		} assertFalse(toujoursla);
 	}
-
 }
