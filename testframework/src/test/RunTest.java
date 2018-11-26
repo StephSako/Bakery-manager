@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 public class RunTest {
 		
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws NoSuchMethodException {
 
 		try {
