@@ -3,42 +3,44 @@ package test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import logger.*;
-
 public class RunTest {
-	
-	public static ConsoleLogger logger = new ConsoleLogger();
-	
+		
 	public static void main(String[] args) throws NoSuchMethodException {
 
-		//change un objet String en objet Class
-		String className = "restaurant.NotesClient";
 		try {
-		    Class<?> clazz = Class.forName(className);
-		    clazz.desiredAssertionStatus();
+			String className1 = "restaurant.TestNoteClient";
+			String className2 = "restaurant.TestRestaurant";
+		
+			Class<?> uneClasse1 = Class.forName(className1);
+			Class<?> uneClasse2 = Class.forName(className2);
+			Object instance1 = null;
+			Object instance2 = null;
+		
+			instance1 = uneClasse1.newInstance();
+		    instance2 = uneClasse2.newInstance();
+		
+		    for(Method method : uneClasse1.getDeclaredMethods()) {
+		    	System.out.println(method.getName());
+		    	method.invoke(instance1);
+			} System.out.println("\n");
+		
+			for(Method method : uneClasse2.getDeclaredMethods()) {
+				System.out.println(method.getName());
+				method.invoke(instance2);
+			} System.out.println("\n");
+			
+		} catch (SecurityException e) {
+		    e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+		    e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-		    logger.error("PROGRAM", "La classe n'a pas ete trouvee", true);
-		}
-		
-		//liste les methodes d'une classe
-		Class<?> uneClasse = String.class;
-		for(Method method : uneClasse.getDeclaredMethods()) {
-		    System.out.println(method.getName());
-		}
-		
-		//execute le code pointe par un objet Method
-		Object instance = null;
-		try {
-		    instance = uneClasse.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-		    logger.error("PROGRAM", "Erreur lors de la creation d'instance d'une classe", true);
-		}
-
-		Method method = uneClasse.getDeclaredMethod("", uneClasse);
-		try {
-		    method.invoke(instance);
-		} catch (InvocationTargetException | IllegalAccessException e) {
-		    logger.error("PROGRAM", "Erreur lors de l'appel des methodes", true);
+		    e.printStackTrace();
+		} catch (InstantiationException e) {
+		    e.printStackTrace();
+		} catch (IllegalAccessException e) {
+		    e.printStackTrace();
+		} catch (InvocationTargetException e) {
+		    e.printStackTrace();
 		}
 	}
 
