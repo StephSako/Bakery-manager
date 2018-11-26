@@ -4,7 +4,7 @@ public class NoteClient implements NoteClientInterface{
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public String nomClient;
 	public double prixTotalHT, prixTotalTTC, TVATotale;
-	DecimalFormat df = new DecimalFormat("0.00");
+	public DecimalFormat df = new DecimalFormat("0.00");
 	public static Saisie saisie = new Saisie();
 	public ConsoleLogger logger = new ConsoleLogger();
 	public boolean remise;
