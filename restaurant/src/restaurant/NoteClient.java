@@ -67,14 +67,12 @@ public class NoteClient implements NoteClientInterface{
 	}
 	public void calculPrix() {
 		for (Produit produit : panier) this.prixTotalHT = this.prixTotalHT + (produit.prix * produit.stock); // Calcul du prix total HT
-		if (this.remise) this.prixTotalHT -= this.prixTotalHT*valRemise; // Calcul de la remise, s'il y en a une
 		this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA; // Calcul du prix total TTC
 		this.TVATotale = this.prixTotalHT * TauxTVA; // Calcul de la TVA totale encaissee
 		logger.info("PROGRAM", "Calcul du prix total HT : " + df.format(prixTotalHT) + "\nCalcul de la TVA totale : "+df.format(TVATotale)+"\nCalcul du prix total TTC : "+df.format(prixTotalTTC), false);
 	}
 	public String afficherNoteAPayer() {
-		String noteToPrint = "";
-		noteToPrint += "\nVoici la note a payer : \n"; // On affiche la note a payer
+		String noteToPrint = "\nVoici la note a payer : \n"; // On affiche la note a payer
 		for (Produit produit : panier) noteToPrint += "Produit : '" + produit.nom + "' - " + produit.stock + " unites\nPrix unitaire HT : " + df.format(produit.prix) + " Euros\n-------------------------------\n";
 		if (this.remise) noteToPrint += "Remise : "+valRemise*100+"%\n"; // Notification si remise
 		noteToPrint += "Prix total HT : " + df.format(prixTotalHT) + " Euros\nTVA totale : " + df.format(TVATotale) + " Euros\nPrix TTC : " + df.format(prixTotalTTC) + " Euros\n";
@@ -89,6 +87,11 @@ public class NoteClient implements NoteClientInterface{
 		logger.info("INPUT", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)", true);
 		String valider = saisie.getSaisieString(); int h = 0;
 		this.remise = (valider.toLowerCase().equals("o"));
+		if (this.remise) {
+			this.prixTotalHT -= this.prixTotalHT*valRemise; // Calcul de la remise, s'il y en a une
+			this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA; // Calcul du prix total TTC
+			this.TVATotale = this.prixTotalHT * TauxTVA; // Calcul de la TVA totale encaissee
+		}
 		logger.info("OUTPUT", this.afficherNoteAPayer(), true);// On affiche la note
 		while(h < restaurant.notesClientsActives.size()) {
 			if (restaurant.notesClientsActives.get(h).nomClient == this.nomClient) {

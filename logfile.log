@@ -139,15 +139,24 @@ Bienvenue sur l'interface de la caisse du restaurant Bagel !
 Que voulez-vous faire ? ('h' pour afficher l'aide)
 
 DATE(2018-11-27 0:54:30) - CATEGORY (PROGRAM) - LEVEL (INFO) - Vous quittez la caisse enregistreuse ...
+<<<<<<< Updated upstream
 DATE(2018-11-27 10:59:26) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 10:59:27) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 10:59:27) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 10:59:27) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
 DATE(2018-11-27 10:59:27) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+=======
+DATE(2018-11-27 11:42:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:42:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:42:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:42:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
+DATE(2018-11-27 11:42:21) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+>>>>>>> Stashed changes
 Bienvenue sur l'interface de la caisse du restaurant Bagel !
 -------------------------------------------------------------
 Que voulez-vous faire ? ('h' pour afficher l'aide)
 
+<<<<<<< Updated upstream
 DATE(2018-11-27 10:59:27) - CATEGORY (PROGRAM) - LEVEL (INFO) - Vous quittez la caisse enregistreuse ...
 DATE(2018-11-27 11:42:12) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 11:42:12) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
@@ -165,10 +174,102 @@ DATE(2018-11-27 11:42:15) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous f
 
 DATE(2018-11-27 11:42:19) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
 DATE(2018-11-27 11:42:19) - CATEGORY (PROGRAM) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+=======
+DATE(2018-11-27 11:42:23) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
+DATE(2018-11-27 11:42:24) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:42:24) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
+DATE(2018-11-27 11:42:24) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:42:26) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:42:27) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:42:27) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:42:27) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisir le produit a ajouter parmi : 
+DATE(2018-11-27 11:42:27) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 11:42:27) - CATEGORY (OUTPUT) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
 Burger - 6,33 euros TTC - 10 unites
 Smoothie - 1,38 euros TTC - 30 unites
 Cafe - 0,55 euros TTC - stock illimite
 
+DATE(2018-11-27 11:42:29) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape ca
+DATE(2018-11-27 11:42:29) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Ce produit n'existe pas ...
+Retapez le produit :
+DATE(2018-11-27 11:42:31) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape cafe
+DATE(2018-11-27 11:42:31) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit Cafe existe dans le stock
+DATE(2018-11-27 11:42:31) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:42:31) - CATEGORY (OUTPUT) - LEVEL (INFO) - Nombre de Cafe a ajouter au panier : 
+DATE(2018-11-27 11:42:32) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape 1
+DATE(2018-11-27 11:42:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Merci ! La commande a ete enregistree.
+DATE(2018-11-27 11:42:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe a ete ajoute au panier
+DATE(2018-11-27 11:42:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 0,50
+Calcul de la TVA totale : 0,05
+Calcul du prix total TTC : 0,55
+DATE(2018-11-27 11:42:32) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:42:34) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:42:37) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:42:37) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:42:37) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 1,00
+Calcul de la TVA totale : 0,10
+Calcul du prix total TTC : 1,10
+DATE(2018-11-27 11:42:37) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:42:37) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Prix total HT : 1,00 Euros
+TVA totale : 0,10 Euros
+Prix TTC : 1,10 Euros
+
+DATE(2018-11-27 11:42:37) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:42:40) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:42:42) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:42:42) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:42:42) - CATEGORY (PROGRAM) - LEVEL (INFO) - Ajout de 0.1 (TVA), donnees comptables
+DATE(2018-11-27 11:42:42) - CATEGORY (PROGRAM) - LEVEL (INFO) - Ajout de 1.1 (prix TTC), donnees comptables
+DATE(2018-11-27 11:42:42) - CATEGORY (INPUT) - LEVEL (INFO) - Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)
+DATE(2018-11-27 11:42:44) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape o
+DATE(2018-11-27 11:42:44) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 1,35
+Calcul de la TVA totale : 0,14
+Calcul du prix total TTC : 1,49
+DATE(2018-11-27 11:42:44) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:42:44) - CATEGORY (OUTPUT) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Remise : 10.0%
+Prix total HT : 1,35 Euros
+TVA totale : 0,14 Euros
+Prix TTC : 1,49 Euros
+
+DATE(2018-11-27 11:42:44) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako n'est plus active
+DATE(2018-11-27 11:42:44) - CATEGORY (PROGRAM) - LEVEL (INFO) - Merci ! La note a bien ete encaissee.
+
+DATE(2018-11-27 11:42:44) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:43:55) - CATEGORY (PROGRAM) - LEVEL (INFO) - 'h' : Afficher cette fenetre d'aide.
+'a' : Afficher le stock du restaurant
+'b' : Ajouter un produit au stock du restaurant
+'c' : Creer une note d'un client
+'d' : Ajouter un produit dans une note de client
+'e' : Afficher la note d'un client
+'f' : Cloturer et faire payer la note d'un client
+'g' : Afficher toutes les notes actives
+'i' : Afficher les donnees comptables
+'q' : Quitter le programme
+DATE(2018-11-27 11:43:55) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:43:58) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 11:43:58) - CATEGORY (PROGRAM) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+>>>>>>> Stashed changes
+Burger - 6,33 euros TTC - 10 unites
+Smoothie - 1,38 euros TTC - 30 unites
+Cafe - 0,55 euros TTC - stock illimite
+
+<<<<<<< Updated upstream
 DATE(2018-11-27 11:42:19) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
 
 DATE(2018-11-27 11:42:26) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Commande inconnue. Tappez 'help' pour l'aide
@@ -180,10 +281,26 @@ DATE(2018-11-27 11:42:30) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est
 DATE(2018-11-27 11:42:30) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisir le produit a ajouter parmi : 
 DATE(2018-11-27 11:42:30) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
 DATE(2018-11-27 11:42:30) - CATEGORY (OUTPUT) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+=======
+DATE(2018-11-27 11:43:58) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:44:4) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
+DATE(2018-11-27 11:44:5) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:44:5) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
+DATE(2018-11-27 11:44:5) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:44:14) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:44:16) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:44:16) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:44:16) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisir le produit a ajouter parmi : 
+DATE(2018-11-27 11:44:16) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 11:44:16) - CATEGORY (OUTPUT) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+>>>>>>> Stashed changes
 Burger - 6,33 euros TTC - 10 unites
 Smoothie - 1,38 euros TTC - 30 unites
 Cafe - 0,55 euros TTC - stock illimite
 
+<<<<<<< Updated upstream
 DATE(2018-11-27 11:42:32) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Cafe
 DATE(2018-11-27 11:42:32) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit Cafe existe dans le stock
 DATE(2018-11-27 11:42:32) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
@@ -210,3 +327,133 @@ Prix TTC : 55,00 Euros
 
 DATE(2018-11-27 11:43:13) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
 
+=======
+DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
+DATE(2018-11-27 11:44:21) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+Bienvenue sur l'interface de la caisse du restaurant Bagel !
+-------------------------------------------------------------
+Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:44:23) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
+DATE(2018-11-27 11:44:23) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:44:23) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
+DATE(2018-11-27 11:44:23) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:44:31) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:44:32) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:44:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:44:32) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisir le produit a ajouter parmi : 
+DATE(2018-11-27 11:44:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 11:44:32) - CATEGORY (OUTPUT) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+Burger - 6,33 euros TTC - 10 unites
+Smoothie - 1,38 euros TTC - 30 unites
+Cafe - 0,55 euros TTC - stock illimite
+
+DATE(2018-11-27 11:44:34) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape cafe
+DATE(2018-11-27 11:44:34) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit Cafe existe dans le stock
+DATE(2018-11-27 11:44:34) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 11:44:34) - CATEGORY (OUTPUT) - LEVEL (INFO) - Nombre de Cafe a ajouter au panier : 
+DATE(2018-11-27 11:44:36) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape 1
+DATE(2018-11-27 11:44:36) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Merci ! La commande a ete enregistree.
+DATE(2018-11-27 11:44:36) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe a ete ajoute au panier
+DATE(2018-11-27 11:44:36) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 0,50
+Calcul de la TVA totale : 0,05
+Calcul du prix total TTC : 0,55
+DATE(2018-11-27 11:44:36) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:44:45) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:44:47) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:44:47) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:44:47) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 1,00
+Calcul de la TVA totale : 0,10
+Calcul du prix total TTC : 1,10
+DATE(2018-11-27 11:44:47) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:44:47) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Prix total HT : 1,00 Euros
+TVA totale : 0,10 Euros
+Prix TTC : 1,10 Euros
+
+DATE(2018-11-27 11:44:47) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:45:4) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:45:6) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:45:6) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:45:6) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 1,50
+Calcul de la TVA totale : 0,15
+Calcul du prix total TTC : 1,65
+DATE(2018-11-27 11:45:6) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:45:6) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Prix total HT : 1,50 Euros
+TVA totale : 0,15 Euros
+Prix TTC : 1,65 Euros
+
+DATE(2018-11-27 11:45:6) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:46:1) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:46:2) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:46:2) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:46:2) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 2,00
+Calcul de la TVA totale : 0,20
+Calcul du prix total TTC : 2,20
+DATE(2018-11-27 11:46:2) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:46:2) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Prix total HT : 2,00 Euros
+TVA totale : 0,20 Euros
+Prix TTC : 2,20 Euros
+
+DATE(2018-11-27 11:46:2) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:46:4) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:46:5) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:46:5) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:46:5) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 2,50
+Calcul de la TVA totale : 0,25
+Calcul du prix total TTC : 2,75
+DATE(2018-11-27 11:46:5) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:46:5) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Prix total HT : 2,50 Euros
+TVA totale : 0,25 Euros
+Prix TTC : 2,75 Euros
+
+DATE(2018-11-27 11:46:5) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 11:46:7) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 11:46:7) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 11:46:7) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:46:7) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 3,00
+Calcul de la TVA totale : 0,30
+Calcul du prix total TTC : 3,30
+DATE(2018-11-27 11:46:7) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:46:7) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Cafe' - 1 unites
+Prix unitaire HT : 0,50 Euros
+-------------------------------
+Prix total HT : 3,00 Euros
+TVA totale : 0,30 Euros
+Prix TTC : 3,30 Euros
+
+DATE(2018-11-27 11:46:7) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:2:6) - CATEGORY (PROGRAM) - LEVEL (INFO) - Vous quittez la caisse enregistreuse ...
+>>>>>>> Stashed changes

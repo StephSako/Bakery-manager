@@ -9,3 +9,61 @@ DATE(2018-11-16 16:52:41) - CATEGORY (OUTPUT) - LEVEL (INFO) - Initialisation ..
 DATE(2018-11-16 16:54:31) - CATEGORY (OUTPUT) - LEVEL (INFO) - Initialisation ...
 DATE(2018-11-16 16:54:54) - CATEGORY (OUTPUT) - LEVEL (INFO) - Initialisation ...
 DATE(2018-11-16 16:55:32) - CATEGORY (OUTPUT) - LEVEL (INFO) - Initialisation ...
+DATE(2018-11-27 11:33:11) - CATEGORY (OUTPUT) - LEVEL (INFO) - Initialisation ...
+DATE(2018-11-27 11:33:13) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'h'.
+DATE(2018-11-27 11:33:27) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'd'.
+DATE(2018-11-27 11:33:29) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:33:35) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'c'.
+DATE(2018-11-27 11:33:36) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:33:36) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client Sako est cree
+DATE(2018-11-27 11:33:39) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'd'.
+DATE(2018-11-27 11:33:41) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:33:41) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:33:41) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 11:33:43) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Cafe
+DATE(2018-11-27 11:33:43) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe existe dans le stock
+DATE(2018-11-27 11:33:43) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe est cree
+DATE(2018-11-27 11:33:45) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape 1
+DATE(2018-11-27 11:33:45) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe a ete ajoute au panier
+DATE(2018-11-27 11:33:51) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'e'.
+DATE(2018-11-27 11:33:52) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:33:52) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:33:52) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 0,50
+DATE(2018-11-27 11:33:52) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total TTC : 0,55
+DATE(2018-11-27 11:33:52) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul de la TVA totale : 0,05
+DATE(2018-11-27 11:33:52) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:34:1) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'q'.
+DATE(2018-11-27 11:34:7) - CATEGORY (OUTPUT) - LEVEL (INFO) - Initialisation ...
+DATE(2018-11-27 11:34:9) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'c'.
+DATE(2018-11-27 11:34:10) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:34:10) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client Sako est cree
+DATE(2018-11-27 11:34:12) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'd'.
+DATE(2018-11-27 11:34:13) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:34:13) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:34:13) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 11:34:15) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Cafe
+DATE(2018-11-27 11:34:15) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe existe dans le stock
+DATE(2018-11-27 11:34:15) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe est cree
+DATE(2018-11-27 11:34:16) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape 1
+DATE(2018-11-27 11:34:16) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Cafe a ete ajoute au panier
+DATE(2018-11-27 11:34:22) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'h'.
+DATE(2018-11-27 11:34:25) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'e'.
+DATE(2018-11-27 11:34:26) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:34:26) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:34:26) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 0,50
+DATE(2018-11-27 11:34:26) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total TTC : 0,55
+DATE(2018-11-27 11:34:26) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul de la TVA totale : 0,05
+DATE(2018-11-27 11:34:26) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:34:31) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'f'.
+DATE(2018-11-27 11:34:32) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape Sako
+DATE(2018-11-27 11:34:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 11:34:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - Ajout de 0.05 (TVA), donnees comptables
+DATE(2018-11-27 11:34:32) - CATEGORY (PROGRAM) - LEVEL (INFO) - Ajout de 0.55 (prix TTC), donnees comptables
+DATE(2018-11-27 11:34:34) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape O
+DATE(2018-11-27 11:34:34) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 1,00
+DATE(2018-11-27 11:34:34) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total TTC : 0,99
+DATE(2018-11-27 11:34:34) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul de la TVA totale : 0,09
+DATE(2018-11-27 11:34:34) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:34:34) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 11:34:34) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako n'est plus active
+DATE(2018-11-27 11:35:14) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape la lettre 'q'.
