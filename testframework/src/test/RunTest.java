@@ -9,8 +9,8 @@ public class RunTest {
 	public static void main(String[] args) throws NoSuchMethodException {
 
 		try {
-			String className1 = "restaurant.TestNoteClient";
-			String className2 = "restaurant.TestRestaurant";
+			String className1 = "test.TestNoteClient";
+			String className2 = "test.TestRestaurant";
 		
 			Class<?> uneClasse1 = Class.forName(className1);
 			Class<?> uneClasse2 = Class.forName(className2);

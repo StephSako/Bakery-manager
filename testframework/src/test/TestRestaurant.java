@@ -2,7 +2,7 @@ package test;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import junit.framework.TestCase;
+import junit.framework.*;
 import logger.ConsoleLogger;
 import restaurant.*;
 

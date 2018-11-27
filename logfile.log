@@ -327,16 +327,25 @@ Prix TTC : 55,00 Euros
 
 DATE(2018-11-27 11:43:13) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
 
+<<<<<<< Updated upstream
 =======
 DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
 DATE(2018-11-27 11:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
 DATE(2018-11-27 11:44:21) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+=======
+DATE(2018-11-27 12:58:44) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 12:58:44) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 12:58:44) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 12:58:44) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
+DATE(2018-11-27 12:58:44) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+>>>>>>> Stashed changes
 Bienvenue sur l'interface de la caisse du restaurant Bagel !
 -------------------------------------------------------------
 Que voulez-vous faire ? ('h' pour afficher l'aide)
 
+<<<<<<< Updated upstream
 DATE(2018-11-27 11:44:23) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
 DATE(2018-11-27 11:44:23) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
 DATE(2018-11-27 11:44:23) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
@@ -456,4 +465,7 @@ Prix TTC : 3,30 Euros
 DATE(2018-11-27 11:46:7) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
 
 DATE(2018-11-27 13:2:6) - CATEGORY (PROGRAM) - LEVEL (INFO) - Vous quittez la caisse enregistreuse ...
+>>>>>>> Stashed changes
+=======
+DATE(2018-11-27 12:58:46) - CATEGORY (PROGRAM) - LEVEL (INFO) - Vous quittez la caisse enregistreuse ...
 >>>>>>> Stashed changes

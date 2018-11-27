@@ -1,6 +1,6 @@
 package test; import java.text.DecimalFormat;
 import java.util.LinkedList;
-import junit.framework.TestCase;
+import junit.framework.*;
 import restaurant.*;
 
 public class TestNoteClient extends TestCase{
