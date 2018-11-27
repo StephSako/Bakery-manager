@@ -1,3 +1,6 @@
+SAKOVITCH Stephen
+BODINIER Laetitia
+MACHON Théo
 
 # ProjetPoo3A
 
