@@ -39,3 +39,7 @@ commands.put("b", () -> operation.casB(logger, stockRestaurant));`
 
 Ainsi, chaque fonctionnalité est rattachée à une 'lettre' saisie par l'utilisateur.
 `commands.get(lettre).run();`
+
+Utilisation de JUnit
+=
+Nous avons choisi de développer notre framework de test avec l'API Java JUnit. Pour ce faire, nous avons dû ajouter un répertoire lib/ contenant l'API JUnit, qui sera ensuite appelé dans le script test.sh pour compiler les fichiers .java.
