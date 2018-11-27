@@ -460,3 +460,144 @@ DATE(2018-11-27 13:1:9) - CATEGORY (PROGRAM) - LEVEL (INFO) - Merci ! La note a 
 
 DATE(2018-11-27 13:1:9) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
 
+DATE(2018-11-27 13:44:0) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:0) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:0) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:0) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
+DATE(2018-11-27 13:44:0) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+Bienvenue sur l'interface de la caisse du restaurant Bagel !
+-------------------------------------------------------------
+Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:44:4) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
+DATE(2018-11-27 13:44:5) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:44:5) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
+DATE(2018-11-27 13:44:5) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:44:14) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
+DATE(2018-11-27 13:44:15) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+Bienvenue sur l'interface de la caisse du restaurant Bagel !
+-------------------------------------------------------------
+Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:44:17) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
+DATE(2018-11-27 13:44:18) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:44:18) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
+DATE(2018-11-27 13:44:18) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:44:18) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 13:44:19) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:44:19) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 13:44:19) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisir le produit a ajouter parmi : 
+DATE(2018-11-27 13:44:19) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 13:44:19) - CATEGORY (OUTPUT) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+Burger - 6,33 euros TTC - 10 unites
+Smoothie - 1,38 euros TTC - 30 unites
+Cafe - 0,55 euros TTC - stock illimite
+
+DATE(2018-11-27 13:44:21) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape smoothie
+DATE(2018-11-27 13:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit Smoothie existe dans le stock
+DATE(2018-11-27 13:44:21) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:44:21) - CATEGORY (OUTPUT) - LEVEL (INFO) - Nombre de Smoothie a ajouter au panier : 
+DATE(2018-11-27 13:44:22) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape 100
+DATE(2018-11-27 13:44:22) - CATEGORY (PROGRAM) - LEVEL (INFO) - 30 Smoothie ajoute(s) (en rupture de stock)
+DATE(2018-11-27 13:44:22) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Merci ! La commande a ete enregistree.
+DATE(2018-11-27 13:44:22) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Smoothie a ete ajoute au panier
+DATE(2018-11-27 13:44:22) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 37,50
+Calcul de la TVA totale : 3,75
+Calcul du prix total TTC : 41,25
+DATE(2018-11-27 13:44:22) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:44:23) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 13:44:24) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:44:24) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 13:44:24) - CATEGORY (INPUT) - LEVEL (INFO) - Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)
+DATE(2018-11-27 13:44:25) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape o
+DATE(2018-11-27 13:44:25) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 13:44:25) - CATEGORY (OUTPUT) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Smoothie' - 30 unites
+Prix unitaire HT : 1,25 Euros
+-------------------------------
+Remise : 10.0%
+Prix total HT : 33,75 Euros
+TVA totale : 3,38 Euros
+Prix TTC : 37,12 Euros
+
+DATE(2018-11-27 13:44:25) - CATEGORY (PROGRAM) - LEVEL (INFO) - Ajout de 3.375 (TVA), donnees comptables - Ajout de 37.125 (prix TTC), donnees comptables - La note Sako n'est plus active
+DATE(2018-11-27 13:44:25) - CATEGORY (PROGRAM) - LEVEL (INFO) - Merci ! La note a bien ete encaissee.
+
+DATE(2018-11-27 13:44:25) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:45:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:45:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:45:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:45:15) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock infini a bien ete cree
+DATE(2018-11-27 13:45:15) - CATEGORY (OUTPUT) - LEVEL (INFO) - -------------------------------------------------------------
+Bienvenue sur l'interface de la caisse du restaurant Bagel !
+-------------------------------------------------------------
+Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:45:17) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client a creer : 
+DATE(2018-11-27 13:45:17) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:45:17) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le client 'Sako' a bien ete cree.
+DATE(2018-11-27 13:45:17) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:45:17) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 13:45:18) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:45:18) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 13:45:18) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisir le produit a ajouter parmi : 
+DATE(2018-11-27 13:45:18) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le stock du restaurant est affiche
+DATE(2018-11-27 13:45:18) - CATEGORY (OUTPUT) - LEVEL (INFO) - Bagel - 2,75 euros TTC - 20 unites
+Burger - 6,33 euros TTC - 10 unites
+Smoothie - 1,38 euros TTC - 30 unites
+Cafe - 0,55 euros TTC - stock illimite
+
+DATE(2018-11-27 13:45:20) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape smoothie
+DATE(2018-11-27 13:45:20) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit Smoothie existe dans le stock
+DATE(2018-11-27 13:45:20) - CATEGORY (PROGRAM) - LEVEL (ERROR) - Le produit a stock fini a bien ete cree
+DATE(2018-11-27 13:45:20) - CATEGORY (OUTPUT) - LEVEL (INFO) - Nombre de Smoothie a ajouter au panier : 
+DATE(2018-11-27 13:45:21) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape 100
+DATE(2018-11-27 13:45:21) - CATEGORY (PROGRAM) - LEVEL (INFO) - 30 Smoothie ajoute(s) (en rupture de stock)
+DATE(2018-11-27 13:45:21) - CATEGORY (PROGRAM) - LEVEL (INFO) - 
+Merci ! La commande a ete enregistree.
+DATE(2018-11-27 13:45:21) - CATEGORY (PROGRAM) - LEVEL (INFO) - Le produit Smoothie a ete ajoute au panier
+DATE(2018-11-27 13:45:21) - CATEGORY (PROGRAM) - LEVEL (INFO) - Calcul du prix total HT : 37,50
+Calcul de la TVA totale : 3,75
+Calcul du prix total TTC : 41,25
+DATE(2018-11-27 13:45:21) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:45:25) - CATEGORY (OUTPUT) - LEVEL (INFO) - Saisissez le nom du client : 
+DATE(2018-11-27 13:45:26) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape sako
+DATE(2018-11-27 13:45:26) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note Sako est recuperee
+DATE(2018-11-27 13:45:26) - CATEGORY (INPUT) - LEVEL (INFO) - Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)
+DATE(2018-11-27 13:45:27) - CATEGORY (INPUT) - LEVEL (INFO) - L'utilisateur a tape o
+DATE(2018-11-27 13:45:27) - CATEGORY (PROGRAM) - LEVEL (INFO) - La note est affichee
+DATE(2018-11-27 13:45:27) - CATEGORY (OUTPUT) - LEVEL (INFO) - 
+Voici la note a payer : 
+Produit : 'Smoothie' - 30 unites
+Prix unitaire HT : 1,25 Euros
+-------------------------------
+Remise : 10.0%
+Prix total HT : 33,75 Euros
+TVA totale : 3,38 Euros
+Prix TTC : 37,12 Euros
+
+DATE(2018-11-27 13:45:27) - CATEGORY (PROGRAM) - LEVEL (INFO) - Ajout de 3.375 (TVA), donnees comptables 
+ Ajout de 37.125 (prix TTC), donnees comptables 
+ La note Sako n'est plus active
+DATE(2018-11-27 13:45:27) - CATEGORY (PROGRAM) - LEVEL (INFO) - Merci ! La note a bien ete encaissee.
+
+DATE(2018-11-27 13:45:27) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:45:28) - CATEGORY (PROGRAM) - LEVEL (INFO) - Les donnees comptables sont affichees
+DATE(2018-11-27 13:45:28) - CATEGORY (PROGRAM) - LEVEL (INFO) - Total des rentrees d'argent : 41,25 Euros
+Total de la TVA facturee : 3,75 Euros.
+
+DATE(2018-11-27 13:45:28) - CATEGORY (OUTPUT) - LEVEL (INFO) - Que voulez-vous faire ? ('h' pour afficher l'aide)
+
+DATE(2018-11-27 13:45:29) - CATEGORY (PROGRAM) - LEVEL (INFO) - Vous quittez la caisse enregistreuse ...

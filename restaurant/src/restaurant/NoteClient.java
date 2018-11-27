@@ -81,9 +81,7 @@ public class NoteClient implements NoteClientInterface{
 	}
 	public void cloturerNoteClient(Restaurant restaurant) {
 		restaurant.ajoutertotalTVAFacturee(this.TVATotale); // On ajoute le montant total et la TVA encaissee dans les champs du restaurant
-		logger.info("PROGRAM", "Ajout de "+TVATotale+" (TVA), donnees comptables", false);
 		restaurant.ajouterRentreeArgent(this.prixTotalTTC);
-		logger.info("PROGRAM", "Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables", false);
 		logger.info("INPUT", "Le client dispose-t-il d'une remise de 10% ? ('o' pour confirmer)", true);
 		String valider = saisie.getSaisieString(); int h = 0;
 		this.remise = (valider.toLowerCase().equals("o"));
@@ -91,12 +89,11 @@ public class NoteClient implements NoteClientInterface{
 			this.prixTotalHT -= this.prixTotalHT*valRemise; // Calcul de la remise, s'il y en a une
 			this.prixTotalTTC = this.prixTotalHT + this.prixTotalHT * TauxTVA; // Calcul du prix total TTC
 			this.TVATotale = this.prixTotalHT * TauxTVA; // Calcul de la TVA totale encaissee
-		}
-		logger.info("OUTPUT", this.afficherNoteAPayer(), true);// On affiche la note
+		} logger.info("OUTPUT", this.afficherNoteAPayer(), true);// On affiche la note
 		while(h < restaurant.notesClientsActives.size()) {
 			if (restaurant.notesClientsActives.get(h).nomClient == this.nomClient) {
 				restaurant.notesClientsActives.remove(h); // On supprime la note encaissee
-				logger.info("PROGRAM", "La note "+nomClient+" n'est plus active", false); break;
+				logger.info("PROGRAM", "Ajout de "+TVATotale+" (TVA), donnees comptables \n Ajout de "+prixTotalTTC+" (prix TTC), donnees comptables \n La note "+nomClient+" n'est plus active", false); break;
 			} h++;
 		}	
 	}
