@@ -1,13 +1,12 @@
 package test;
 
-import static org.junit.Assert.*;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import org.junit.jupiter.api.Test;
+import junit.framework.TestCase;
 import logger.ConsoleLogger;
 import restaurant.*;
 
-public class TestRestaurant {
+public class TestRestaurant  extends TestCase{
 
 	public LinkedList<Produit> stock = new LinkedList<Produit>();
 	public LinkedList<NoteClient> notesClientsActives = new LinkedList<NoteClient>();
@@ -15,7 +14,6 @@ public class TestRestaurant {
 	public Restaurant restaurant = new Restaurant(null);
 	public DecimalFormat df = new DecimalFormat("0.00");
 	
-	@Test
 	public final void testExistenceClientEtAjout() {
 		int j = 0; boolean existe = false; String newClient = "";
 		
@@ -29,7 +27,7 @@ public class TestRestaurant {
 		assertFalse("Le client existe deja", existe);
 	}
 
-	@Test
+	
 	public final void testAjouterProduitStockRestaurant() {
 		int i = 0; boolean produitCree = false; String nom = "";
 		
@@ -43,7 +41,7 @@ public class TestRestaurant {
 		assertTrue("Le produit n'a pas ete cree", produitCree);
 	}
 
-	@Test
+	
 	public final void testAfficherStock() {
 		String stockAfficher = "";
 		
@@ -55,7 +53,7 @@ public class TestRestaurant {
 		assertEquals(stockAfficher, restaurant.afficherStock());
 	}
 
-	@Test
+	
 	public final void testOuvrirNote() {
 		NoteClient noteATrouver; int i = 0; String nomClientSearched = "";
 		
@@ -67,7 +65,7 @@ public class TestRestaurant {
 		}
 	}
 
-	@Test
+	
 	public final void testAfficherNotes() {
 		String notesToPrint = "";
 		
@@ -75,7 +73,7 @@ public class TestRestaurant {
 		assertEquals(notesToPrint, restaurant.afficherNotes());
 	}
 
-	@Test
+	
 	public final void testAjouterRentreeArgent() {
 		double recette = 0;
 		
@@ -95,7 +93,7 @@ public class TestRestaurant {
 		assertEquals(recette, restaurant.rentreeArgent, 0.01);
 	}
 
-	@Test
+	
 	public final void testAjoutertotalTVAfacturee() {
 		double tva;
 		
@@ -115,7 +113,7 @@ public class TestRestaurant {
 		assertEquals(tva, restaurant.rentreeArgent, 0.01);
 	}
 
-	@Test
+	
 	public final void testDonneesComptable() {
 		DecimalFormat df = new DecimalFormat("0.00");
 		Restaurant restaurant = new Restaurant(null);

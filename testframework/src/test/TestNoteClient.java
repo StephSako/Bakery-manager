@@ -1,19 +1,15 @@
-package test; import static org.junit.Assert.*;
-
-import java.text.DecimalFormat;
+package test; import java.text.DecimalFormat;
 import java.util.LinkedList;
-import org.junit.jupiter.api.Test;
-
+import junit.framework.TestCase;
 import restaurant.*;
 
-public class TestNoteClient {
+public class TestNoteClient extends TestCase{
 
 	public NoteClient note = new NoteClient(null);
 	public Restaurant restaurant = new Restaurant(null);
 	public DecimalFormat df = new DecimalFormat("0.00");
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 
-	@Test
 	public final void testExistenceProduitEtAjout() {
 		int j = 0; boolean existe = false; String nom = ""; double prix = 0; int stock = 0;
 		
@@ -26,7 +22,6 @@ public class TestNoteClient {
 		} assertFalse("Le produit existe deja", existe);
 	}
 
-	@Test
 	public final void testEnleverProduitDuStock() {
 		String nom = "Cookie"; double prix = 0.5; int stock = 15;
 		Produit newProduit = new ProduitStockFinis(nom, prix, stock);
@@ -44,7 +39,6 @@ public class TestNoteClient {
 		assertEquals(stock, newProduit.stock);
 	}
 
-	@Test
 	public final void testProduitDejaCommande() {
 		int i = 0; Produit produitATrouver = new ProduitStockFinis("Glace", 2.5, 10);
 		
@@ -56,7 +50,6 @@ public class TestNoteClient {
 		}
 	}
 
-	@Test
 	public final void testAjouterProduitNoteClient() {
 		NoteClient noteRecovered = restaurant.ouvrirNote();
 		Produit newProduit = note.existenceProduitEtAjout(restaurant, "B", 1, 1);
@@ -66,7 +59,6 @@ public class TestNoteClient {
 		assertEquals(noteRecovered, note);
 	}
 
-	@Test
 	public final void testCalculPrix() {
 		double HT = 15; double TVA = 0.1; double TTC = HT * TVA;
 		Produit produit = new ProduitStockFinis("Gateau", 15, 1);
@@ -77,7 +69,6 @@ public class TestNoteClient {
 		assertEquals(TVA, note.TVATotale, 0.1);
 	}
 
-	@Test
 	public final void testAfficherNoteAPayer() {
 		String noteToPrint = ""; double valRemise = 0.1; boolean remise = true; double prixTotalHT = 0; double TVATotale = 0; double prixTotalTTC = 0;
 		noteToPrint += "\nVoici la note a payer : \n";
@@ -88,7 +79,6 @@ public class TestNoteClient {
 		assertEquals(noteToPrint, note);
 	}
 
-	@Test
 	public final void testCloturerNoteClient() {
 		int i = 0; boolean toujoursla = false;
 		NoteClient noteNotClosedYet = new NoteClient("Choucroute");
