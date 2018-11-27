@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import logger.*;
 
-public class Restaurant implements RestaurantInterface {
+public class Restaurant {
 	public Scanner sc = new Scanner(System.in);
 	public ConsoleLogger logger = new ConsoleLogger();
 	public LinkedList<Produit> stock = new LinkedList<Produit>(); // Liste des produits en stock

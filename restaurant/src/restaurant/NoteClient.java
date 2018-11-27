@@ -1,6 +1,6 @@
 package restaurant; import java.text.DecimalFormat; import java.util.LinkedList; import logger.*;
 
-public class NoteClient implements NoteClientInterface{
+public class NoteClient {
 	public LinkedList<Produit> panier = new LinkedList<Produit>();
 	public String nomClient;
 	public double prixTotalHT, prixTotalTTC, TVATotale;
